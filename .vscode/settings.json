@@ -1,5 +1,4 @@
 {
-    "editor.formatOnSave": true,
     "diffEditor.codeLens": true,
     "editor.minimap.maxColumn": 40,
     "editor.minimap.scale": 3,
@@ -16,8 +15,13 @@
     "php-docblocker.alignParams": true,
     "php-docblocker.alignReturn": true,
     "php.problems.excludeGitIgnore": true,
-    "php-cs-fixer.autoFixByBracket": false,
     "php.problems.scope": "user",
     "php.format.rules.spaceAfterCast": true,
-    "php.format.rules.spaceAroundConcatenation": true
+    "php.format.rules.spaceAroundConcatenation": true,
+    "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
+    "[php]": {
+        "editor.defaultFormatter": "junstyle.php-cs-fixer"
+    },
+    "git.autofetch": true,
+    "php-cs-fixer.lastDownload": 1682680600697,
 }

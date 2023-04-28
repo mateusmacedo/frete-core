@@ -6,9 +6,6 @@ return (new PhpCsFixer\Config())
     ->setUsingCache(true)
     ->setRiskyAllowed(true)
     ->setRules([
-        // TODO: check in the future if this issue will be closed: https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/4955
-        // TODO: while It doesn't have support to PSR12, we can use this recommendation: https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/4502#issuecomment-570408101
-        // TODO: for configuration -> https://mlocati.github.io/php-cs-fixer-configurator/#version:2.16
         '@PSR12' => true,
         '@PhpCsFixer' => true,
         'blank_line_after_opening_tag' => true,
