@@ -8,11 +8,12 @@
         "monolog/monolog": "^2.9.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "10.2.x-dev",
         "fakerphp/faker": "2.x-dev",
+        "friendsofphp/php-cs-fixer": "dev-master",
+        "marcocesarato/php-conventional-changelog": "^1.17",
         "mockery/mockery": "2.0.x-dev",
         "phpstan/phpstan": "1.11.x-dev",
-        "friendsofphp/php-cs-fixer": "dev-master"
+        "phpunit/phpunit": "10.2.x-dev"
     },
     "license": "Mit",
     "autoload": {
@@ -51,6 +52,11 @@
         "unit-test": "php -d memory_limit=-1 vendor/bin/phpunit --testdox --no-coverage --configuration phpunit.xml",
         "unit-test-cov": "XDEBUG_MODE=coverage php -d memory_limit=-1 vendor/bin/phpunit --testdox --coverage-text --configuration phpunit.xml",
         "test-coverage-html": "XDEBUG_MODE=coverage php -d memory_limit=-1 vendor/bin/phpunit --coverage-html=coverage --configuration phpunit.xml",
-        "unit-test:report": "php -d memory_limit=-1 vendor/bin/phpunit --testdox --coverage-text --colors=never --log-junit ${REPORT_PATH}logfile.xml --coverage-clover ${REPORT_PATH}coverage.xml --configuration phpunit.xml"
+        "unit-test:report": "php -d memory_limit=-1 vendor/bin/phpunit --testdox --coverage-text --colors=never --log-junit ${REPORT_PATH}logfile.xml --coverage-clover ${REPORT_PATH}coverage.xml --configuration phpunit.xml",
+        "changelog": "conventional-changelog",
+        "release": "conventional-changelog --commit",
+        "release:patch": "conventional-changelog --patch --commit",
+        "release:minor": "conventional-changelog --minor --commit",
+        "release:major": "conventional-changelog --major --commit"
     }
 }

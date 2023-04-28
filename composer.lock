@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "120151b6a38e21fb57c1481fe6eba7c9",
+    "content-hash": "ec4dd3fd96db2e5208893716ea69cb85",
     "packages": [
         {
             "name": "brick/math",
@@ -6005,6 +6005,83 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+            "name": "marcocesarato/php-conventional-changelog",
+            "version": "1.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marcocesarato/php-conventional-changelog.git",
+                "reference": "9269b0a3198d2107322f9f9a0fca399719825f67"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marcocesarato/php-conventional-changelog/zipball/9269b0a3198d2107322f9f9a0fca399719825f67",
+                "reference": "9269b0a3198d2107322f9f9a0fca399719825f67",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.1.3",
+                "symfony/console": "^4 || ^5 || ^6"
+            },
+            "require-dev": {
+                "brainmaestro/composer-git-hooks": "^2.8",
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "php-mock/php-mock": "^2.3",
+                "php-mock/php-mock-phpunit": "^2.6",
+                "phpunit/phpunit": "^9.6"
+            },
+            "bin": [
+                "conventional-changelog"
+            ],
+            "type": "library",
+            "extra": {
+                "hooks": {
+                    "pre-commit": "composer fix-cs",
+                    "pre-push": "composer check-cs",
+                    "post-merge": "composer install"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ConventionalChangelog\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Cesarato",
+                    "email": "cesarato.developer@gmail.com"
+                }
+            ],
+            "description": "Generate changelogs and release notes from a project's commit messages and metadata and automate versioning with semver.org and conventionalcommits.org",
+            "keywords": [
+                "changelog",
+                "commit",
+                "commits",
+                "convention",
+                "conventional",
+                "conventional-changelog",
+                "conventional-changelog-preset",
+                "conventional-commit",
+                "conventional-commits",
+                "conventionalcommits",
+                "generation",
+                "git",
+                "history",
+                "php",
+                "readme",
+                "tag"
+            ],
+            "support": {
+                "issues": "https://github.com/marcocesarato/php-conventional-changelog/issues",
+                "source": "https://github.com/marcocesarato/php-conventional-changelog/tree/v1.17.0"
+            },
+            "time": "2023-03-26T16:59:30+00:00"
+        },
+        {
             "name": "mockery/mockery",
             "version": "2.0.x-dev",
             "source": {
@@ -8013,11 +8090,11 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "phpunit/phpunit": 20,
         "fakerphp/faker": 20,
+        "friendsofphp/php-cs-fixer": 20,
         "mockery/mockery": 20,
         "phpstan/phpstan": 20,
-        "friendsofphp/php-cs-fixer": 20
+        "phpunit/phpunit": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
