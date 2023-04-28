@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Frete\Core\Infrastructure\Helpers;
 
-use Frete\Core\Domain\Validators\ValidationDecorator;
 use Frete\Core\Infrastructure\Cache\CacheDecorator;
 use Frete\Core\Infrastructure\Log\LoggerDecorator;
 use Frete\Core\Infrastructure\Resilience\RetryDecorator;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Log\LoggerInterface;
 use ReflectionMethod;
+use Frete\Core\Domain\Validators\ValidatorDecorator;
 
 class Proxy
 {
@@ -41,10 +41,10 @@ class Proxy
         $parameters = $reflectionMethod->getParameters();
         $validationDecorators = [];
         foreach ($parameters as $index => $parameter) {
-            $validationAttributes = $parameter->getAttributes(ValidationDecorator::class);
+            $validationAttributes = $parameter->getAttributes(ValidatorDecorator::class);
             if (!empty($validationAttributes)) {
                 $validationAttribute = $validationAttributes[0]->newInstance();
-                $validationDecorators[] = new ValidationDecorator($validationAttribute->getValidator(), $index);
+                $validationDecorators[] = new ValidatorDecorator($validationAttribute->getValidator(), $index);
             }
         }
 

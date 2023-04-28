@@ -9,7 +9,7 @@ use Frete\Shared\Decorator;
 use InvalidArgumentException;
 
 #[Attribute(Attribute::TARGET_PARAMETER)]
-class ValidationDecorator implements Decorator
+class ValidatorDecorator implements Decorator
 {
     public function __construct(private Validator $validator, private int $parameterIndex)
     {
