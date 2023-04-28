@@ -1,0 +1,23 @@
+{
+    "editor.formatOnSave": true,
+    "diffEditor.codeLens": true,
+    "editor.minimap.maxColumn": 40,
+    "editor.minimap.scale": 3,
+    "editor.minimap.size": "fit",
+    "atlascode.bitbucket.contextMenus.enabled": false,
+    "atlascode.bitbucket.enabled": false,
+    "git.allowForcePush": true,
+    "git.branchSortOrder": "alphabetically",
+    "git.inputValidationLength": 72,
+    "git.mergeEditor": true,
+    "git.rebaseWhenSync": true,
+    "phpunit.phpunit": "vendor/bin/phpunit",
+    "php-cs-fixer.onsave": true,
+    "php-docblocker.alignParams": true,
+    "php-docblocker.alignReturn": true,
+    "php.problems.excludeGitIgnore": true,
+    "php-cs-fixer.autoFixByBracket": false,
+    "php.problems.scope": "user",
+    "php.format.rules.spaceAfterCast": true,
+    "php.format.rules.spaceAroundConcatenation": true
+}
