@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Frete\Core\Infrastructure\Database;
+namespace Frete\Core\Domain\Repository;
 
 use Frete\Core\Domain\Entity;
 use Frete\Core\Infrastructure\Database\Errors\RepositoryError;

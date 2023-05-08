@@ -8,7 +8,7 @@ abstract class AbstractFactory
 {
     protected object $item;
 
-    abstract public function create(string $target, mixed $data = null): mixed;
+    abstract public function create(mixed $data = null): mixed;
 
     abstract protected function reset(): void;
      public static function buildEnum($className, $data): mixed
