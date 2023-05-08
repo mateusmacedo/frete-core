@@ -32,7 +32,7 @@ class ActionFactory implements IActionFactory
         return $this->commandQueryEventMap->offsetExists($action);
     }
 
-    public function create(string $action, ?array $actionProps = null)
+    public function create(string $action, ?array $actionProps = null): Action
     {
         $actionName = $action;
         if (!$this->exists($actionName)) {

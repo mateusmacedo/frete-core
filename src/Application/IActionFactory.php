@@ -12,7 +12,7 @@ interface IActionFactory
 
     public function exists(string $action): bool;
 
-    public function create(string $action, ?array $actionProps = null);
+    public function create(string $action, ?array $actionProps = null): Action;
 
     public function listActions(): ArrayObject;
 }

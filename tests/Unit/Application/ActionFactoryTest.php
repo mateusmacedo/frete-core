@@ -6,9 +6,10 @@ namespace Tests\Unit\Application;
 
 use Exception;
 use Frete\Core\Application\{ActionFactory, IActionFactory};
-use stdClass;
+use Frete\Core\Application\Action;
 use Tests\TestCase;
 use Tests\Unit\Application\Stubs\ActionsEnumStub;
+use Tests\Unit\Application\Stubs\ActionStub;
 
 class ActionFactoryTest extends TestCase
 {
@@ -40,7 +41,9 @@ class ActionFactoryTest extends TestCase
     public function testCreateActionSuccessWithExistsAction()
     {
         $actionFactory = $this->instanceSuccess();
-        $this->assertInstanceOf(stdClass::class, $actionFactory->create('stubed'));
+        $action = $actionFactory->create('stubed');
+        $this->assertInstanceOf(ActionStub::class, $action);
+        $this->assertInstanceOf(Action::class, $action);
     }
 
     public function testCreateActionErrorWithNotExistsAction()

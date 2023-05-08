@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Application\Stubs;
 
-use stdClass;
+use Frete\Core\Application\Command;
+
+class ActionStub implements Command{}
 
 enum ActionsEnumStub: string
 {
-    case stubed = stdClass::class;
+    case stubed = ActionStub::class;
 }
