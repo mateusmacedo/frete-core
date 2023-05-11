@@ -17,7 +17,7 @@ abstract class Entity
 
     public function setId(string|int $id): self
     {
-        if (is_null($this->id)) {
+        if (empty($this->id)) {
             $this->id = $id;
         }
         return $this;
