@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Frete\Core\Application\Errors;
+namespace Frete\Core\Infrastructure\Errors;
 
 use Frete\Core\Shared\Result;
 
