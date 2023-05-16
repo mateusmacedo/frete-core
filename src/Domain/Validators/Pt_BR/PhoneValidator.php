@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Frete\Core\Domain\Validators\Pt_BR;
+
+class PhoneValidator extends Validator
+{
+
+    public function validate(mixed $input): bool
+    {
+        return preg_match("/^\+[0-9]{2}\([0-9]{2}\)[0-9]?[0-9]{4}-[0-9]{4}$/", $input); 
+    }
+
+     /**
+     * @return null|array|string
+     */
+    public function getErrorMessage(): array|string|null
+    {
+        return 'Invalid phone number';
+    }
+}
