@@ -6,20 +6,7 @@ namespace Frete\Core\Domain;
 
 abstract class Entity
 {
-    protected function __construct(private string|int|null $id = null)
+    protected function __construct(public readonly string $id)
     {
-    }
-
-    public function getId(): string|int|null
-    {
-        return $this->id;
-    }
-
-    public function setId(string|int $id): self
-    {
-        if (empty($this->id)) {
-            $this->id = $id;
-        }
-        return $this;
     }
 }

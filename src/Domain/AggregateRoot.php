@@ -8,9 +8,9 @@ abstract class AggregateRoot extends Entity
 {
     private BaseArrayObject $domainEvents;
 
-    public function __construct()
+    public function __construct(string $id)
     {
-        parent::__construct();
+        parent::__construct($id);
         $this->clearEvents();
     }
 
