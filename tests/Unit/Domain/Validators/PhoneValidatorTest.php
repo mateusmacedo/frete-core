@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Core\Domain\Validators;
+namespace Tests\Unit\Domain\Validators;
 
 use Frete\Core\Domain\Validators\PhoneValidator;
 use Tests\TestCase;
