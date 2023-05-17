@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Frete\Core\Application;
+namespace FreightPayments\Core\Application;
 
 use ArrayObject;
+use BackedEnum;
 use Exception;
 
 class ActionFactory implements IActionFactory
@@ -32,9 +33,9 @@ class ActionFactory implements IActionFactory
         return $this->commandQueryEventMap->offsetExists($action);
     }
 
-    public function create(string $action, ?array $actionProps = null): Action
+    public function create(string|BackedEnum $action, ?array $actionProps = null): Action
     {
-        $actionName = $action;
+        $actionName = ($action instanceof BackedEnum) ? $action->name : $action;
         if (!$this->exists($actionName)) {
             throw new Exception("there is no {$actionName} action on the enum");
         }
