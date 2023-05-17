@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Frete\Core\Domain\Validators\Pt_BR;
+use Frete\Core\Domain\Validators\Validator;
 
 class PhoneValidator extends Validator
 {
