@@ -1,5 +1,5 @@
 {
-    "name": "fretepago/php-core",
+    "name": "frete/core",
     "description": "core package for php projects opnative using ddd, cqrs, eda with laravel and ecotone framework",
     "type": "library",
     "require": {
