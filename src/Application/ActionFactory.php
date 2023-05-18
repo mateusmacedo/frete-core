@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FreightPayments\Core\Application;
+namespace Frete\Core\Application;
 
 use ArrayObject;
 use BackedEnum;

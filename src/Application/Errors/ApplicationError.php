@@ -4,12 +4,20 @@ declare(strict_types=1);
 
 namespace Frete\Core\Application\Errors;
 
-use Frete\Core\Shared\Result;
+use ArrayObject;
 
-class ApplicationError extends Result
+class ApplicationError
 {
-    public function __construct($errors)
+    public function __construct(private readonly ArrayObject $errors, private readonly ?string $domainName = null)
     {
-        parent::__construct(false, null, $errors);
+    }
+
+    public function getErrors(): ArrayObject
+    {
+        if ($this->domainName) {
+            return new ArrayObject([$this->domainName => (array) $this->errors]);
+        }
+
+        return $this->errors;
     }
 }

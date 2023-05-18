@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Frete\Core\Infrastructure\Database\Errors;
+namespace Frete\Core\Application\Errors;
 
-use Frete\Core\Infrastructure\Errors\InfrastructureError;
+use Frete\Core\Application\Errors\ApplicationError;
 
-class RepositoryError extends InfrastructureError
+class InvalidDataError extends ApplicationError
 {
     public function __construct(
         private readonly mixed $error
