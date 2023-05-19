@@ -28,4 +28,11 @@ abstract class AggregateRoot extends Entity
     {
         $this->domainEvents->append($event);
     }
+
+    protected function createEvent(string $domainEventReferenceName, array $data = []): void
+    {
+        $params = [$this->id, $data];
+        $evento = new($domainEventReferenceName)(...$params);
+        $this->addEvent($evento);
+    }
 }
