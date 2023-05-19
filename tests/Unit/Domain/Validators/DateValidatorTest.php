@@ -18,7 +18,7 @@ class DateValidatorTest extends TestCase
     public function testShouldNotValidateDate()
     {
         $validator = new DateValidator();
-        $this->assertFalse($validator->validate('2020/04/01 13:33:12'));
+        $this->assertFalse($validator->validate('2020/14/01 24:33:12'));
         $this->assertEquals('Invalid date format', $validator->getErrorMessage());
     }
 }

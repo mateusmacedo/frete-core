@@ -10,7 +10,7 @@ class PhoneValidator extends Validator
 
     public function validate(mixed $input): bool
     {
-        return preg_match("/^\+[0-9]{2}\([0-9]{2}\)[0-9]?[0-9]{4}-[0-9]{4}$/", $input); 
+        return (bool) preg_match("/^\+[0-9]{2}\([0-9]{2}\)[0-9]?[0-9]{4}-[0-9]{4}$/", $input);
     }
 
      /**

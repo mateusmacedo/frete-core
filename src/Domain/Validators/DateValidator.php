@@ -29,8 +29,9 @@ class DateValidator extends Validator
     private function isAValidDate($date){
         try{
             $date = new DateTime($date);
-        } catch (Exception $e) {
+            return true;
+        } catch (\Exception $e) {
             return false;
-        }        
+        }
     }
 }

@@ -19,6 +19,6 @@ class StringValidatorTest extends TestCase
     {
         $validator = new StringValidator();
         $this->assertFalse($validator->validate(10));
-        $this->assertEquals('Invalid string format', $validator->getErrorMessage());
+        $this->assertEquals('Invalid string', $validator->getErrorMessage());
     }
 }

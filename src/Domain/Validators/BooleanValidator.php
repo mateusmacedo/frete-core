@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Frete\Core\Domain\Validators;
 
-class EmailValidator extends Validator
+class BooleanValidator extends Validator
 {
     public function validate(mixed $input): bool
     {
-        return (bool) filter_var($input, FILTER_VALIDATE_EMAIL);
+        return is_bool($input);
     }
 
     /**
@@ -16,6 +16,6 @@ class EmailValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Invalid email address';
+        return 'Invalid boolean';
     }
 }
