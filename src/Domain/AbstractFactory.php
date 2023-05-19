@@ -10,7 +10,7 @@ abstract class AbstractFactory
 
     abstract public function create(mixed $data = null): mixed;
 
-    abstract protected function reset(): void;
+    abstract protected function reset(mixed $data): void;
      public static function buildEnum($className, $data): mixed
     {
         $instance = $className::tryfrom($data);
