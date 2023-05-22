@@ -5,7 +5,8 @@
     "require": {
         "ecotone/enqueue": "^1.82",
         "ecotone/lite-application": "^1.82",
-        "guzzlehttp/guzzle": "^7.7"
+        "guzzlehttp/guzzle": "^7.7",
+        "enqueue/rdkafka": "^0.10.18"
     },
     "require-dev": {
         "fakerphp/faker": "^1.22",
