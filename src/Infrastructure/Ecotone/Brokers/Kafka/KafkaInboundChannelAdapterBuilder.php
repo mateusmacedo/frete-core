@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FreightPayments\Core\Infrastructure\Ecotone\Brokers\Kafka;
+namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka;
 use Ecotone\Enqueue\CachedConnectionFactory;
 use Ecotone\Enqueue\EnqueueInboundChannelAdapterBuilder;
 use Ecotone\Enqueue\HttpReconnectableConnectionFactory;

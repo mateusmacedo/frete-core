@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FreightPayments\Core\Infrastructure\Ecotone\Brokers\Kafka;
+namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka;
 
 use Ecotone\Enqueue\CachedConnectionFactory;
 use Ecotone\Enqueue\EnqueueOutboundChannelAdapterBuilder;
@@ -13,7 +13,7 @@ use Ecotone\Messaging\Handler\ReferenceSearchService;
 use Ecotone\Messaging\Conversion\ConversionService;
 use Ecotone\Messaging\MessageConverter\DefaultHeaderMapper;
 use Enqueue\RdKafka\RdKafkaConnectionFactory;
-use FreightPayments\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\DefaultMessageHeader;
+use Frete\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\DefaultMessageHeader;
 
 class KafkaOutboundChannelAdapterBuilder extends EnqueueOutboundChannelAdapterBuilder
 {

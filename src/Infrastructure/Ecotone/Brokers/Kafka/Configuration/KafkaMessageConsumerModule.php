@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FreightPayments\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration;
+namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration;
 
 use Ecotone\AnnotationFinder\AnnotationFinder;
 use Ecotone\Messaging\Attribute\ModuleAnnotation;
@@ -11,7 +11,7 @@ use Ecotone\Messaging\Config\Annotation\ModuleConfiguration\NoExternalConfigurat
 use Ecotone\Messaging\Config\ModuleReferenceSearchService;
 use Ecotone\Messaging\Handler\InterfaceToCallRegistry;
 use Ecotone\Messaging\Config\Configuration;
-use FreightPayments\Core\Infrastructure\Ecotone\Brokers\Kafka\KafkaInboundChannelAdapterBuilder;
+use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\KafkaInboundChannelAdapterBuilder;
 
 #[ModuleAnnotation]
 final class KafkaMessageConsumerModule extends NoExternalConfigurationModule implements AnnotationModule

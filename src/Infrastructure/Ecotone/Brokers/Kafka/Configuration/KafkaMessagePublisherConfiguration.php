@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FreightPayments\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration;
+namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration;
 
 use Ecotone\Messaging\MessagePublisher;
 use Enqueue\RdKafka\RdKafkaConnectionFactory;

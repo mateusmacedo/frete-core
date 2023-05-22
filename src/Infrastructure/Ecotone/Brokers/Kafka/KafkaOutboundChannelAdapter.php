@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace FreightPayments\Core\Infrastructure\Ecotone\Brokers\Kafka;
+namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka;
 
 use Ecotone\Enqueue\CachedConnectionFactory;
 use Ecotone\Enqueue\OutboundMessageConverter;
 use Enqueue\RdKafka\RdKafkaTopic;
-use FreightPayments\Core\Infrastructure\Ecotone\Brokers\CustomEnqueueOutboundChannelAdapter;
-use FreightPayments\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\IHeaderMessage;
+use Frete\Core\Infrastructure\Ecotone\Brokers\CustomEnqueueOutboundChannelAdapter;
+use Frete\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\IHeaderMessage;
 
 final class KafkaOutboundChannelAdapter extends CustomEnqueueOutboundChannelAdapter
 {

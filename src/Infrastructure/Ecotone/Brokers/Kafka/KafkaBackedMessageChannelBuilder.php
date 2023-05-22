@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FreightPayments\Core\Infrastructure\Ecotone\Brokers\Kafka;
+namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka;
 
 use Ecotone\Enqueue\EnqueueMessageChannelBuilder;
 use Enqueue\RdKafka\RdKafkaConnectionFactory;
-use FreightPayments\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\DefaultMessageHeader;
+use Frete\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\DefaultMessageHeader;
 
 final class KafkaBackedMessageChannelBuilder extends EnqueueMessageChannelBuilder
 {
