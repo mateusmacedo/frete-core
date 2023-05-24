@@ -13,7 +13,7 @@ class OneOfOptionsValidatorTest extends TestCase
     {
         $validator = new OneOfOptionsValidator();
         $options = ['option', 'select', 'checkbox', 'textinput', 'label'];
-        $validator->setValidOptions($options);
+        $validator->setOptions($options);
         $this->assertTrue($validator->validate('option'));
     }
 
@@ -21,8 +21,8 @@ class OneOfOptionsValidatorTest extends TestCase
     {
         $validator = new OneOfOptionsValidator();
         $options = ['option', 'select', 'checkbox', 'textinput', 'label'];
-        $validator->setValidOptions($options);
-        $this->assertFalse($validator->validate($options, 'textarea'));
+        $validator->setOptions($options);
+        $this->assertFalse($validator->validate('textarea'));
         $this->assertEquals('Invalid option', $validator->getErrorMessage());
     }
 }

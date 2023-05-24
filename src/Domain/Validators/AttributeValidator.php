@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 namespace Frete\Core\Domain\Validators;
 
+use Traversable;
+
 class AttributeValidator extends Validator
 {
-    public function __construct(private string $attribute, private Validator $validator)
+    private ?string $errorMessage = null;
+    public function __construct(public readonly string $attribute, protected ?Validator $validator = null)
     {
     }
 
-    public function getAttribute(): string
-    {
-        return $this->attribute;
-    }
-
-    public function getValidator(): Validator|ValidatorComposite
+    public function getValidator(): Validator
     {
         return $this->validator;
+    }
+
+    public function setValidator(Validator $validator): void
+    {
+        $this->validator = $validator;
     }
 
     /**
@@ -27,13 +30,39 @@ class AttributeValidator extends Validator
      */
     public function validate(mixed $input): bool
     {
-        return $this->getValidator()->validate($input);
+        if (is_object($input) && !isset($input->{$this->attribute})) {
+            return true;
+        }
+
+        if (is_array($input) && !isset($input[$this->attribute])) {
+            return true;
+        }
+
+        if (is_object($input) && isset($input->{$this->attribute})) {
+            $input = $input->{$this->attribute};
+        }
+
+        if (is_array($input) && isset($input[$this->attribute])) {
+            $input = $input[$this->attribute];
+        }
+
+        if (is_array($input) || $input instanceof Traversable) {
+            $result = true;
+            foreach ($input as $value) {
+                if (!$this->validator->validate($value)) {
+                    $result = false;
+                }
+            }
+            return $result;
+        }
+
+        return $this->validator->validate($input);
     }
 
     /**
-     * @return null|array|string
+     * @return mixed
      */
-    public function getErrorMessage(): array|string|null
+    public function getErrorMessage()
     {
         return $this->validator->getErrorMessage();
     }

@@ -8,7 +8,7 @@ class OneOfOptionsValidator extends Validator
 {
     private array $validOptions = [];
 
-    public function setValidOptions(array $options): mixed
+    public function setOptions(array $options): mixed
     {
         $this->validOptions = $options;
         return $this;

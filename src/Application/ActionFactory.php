@@ -42,9 +42,4 @@ class ActionFactory implements IActionFactory
         $actionInstance = $this->commandQueryEventMap->offsetGet($actionName);
         return null != $actionProps ? new $actionInstance(...$actionProps) : new $actionInstance();
     }
-
-    public function listActions(): ArrayObject
-    {
-        return $this->commandQueryEventMap;
-    }
 }

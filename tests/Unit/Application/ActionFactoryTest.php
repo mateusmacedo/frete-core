@@ -13,15 +13,18 @@ use Tests\Unit\Application\Stubs\ActionStub;
 
 class ActionFactoryTest extends TestCase
 {
+    protected ActionFactory $sut;
+    protected ActionsEnumStub $actions;
+
     public function setUp(): void
     {
         parent::setUp();
+        $this->sut = $this->createSut();
     }
 
     public function testConstructorSuccessWithCorrectlyData()
     {
-        $actionFactory = $this->instanceSuccess();
-        $this->assertInstanceOf(IActionFactory::class, $actionFactory);
+        $this->assertInstanceOf(IActionFactory::class, $this->sut);
     }
 
     public function testConstructorErrorWithIncorrectlyData()
@@ -33,15 +36,13 @@ class ActionFactoryTest extends TestCase
 
     public function testCheckExistsAction()
     {
-        $actionFactory = $this->instanceSuccess();
-        $this->assertEquals(true, $actionFactory->exists('stubed'));
-        $this->assertEquals(false, $actionFactory->exists('NOT stubed'));
+        $this->assertEquals(true, $this->sut->exists('stubed'));
+        $this->assertEquals(false, $this->sut->exists('NOT stubed'));
     }
 
     public function testCreateActionSuccessWithExistsAction()
     {
-        $actionFactory = $this->instanceSuccess();
-        $action = $actionFactory->create('stubed');
+        $action = $this->sut->create('stubed');
         $this->assertInstanceOf(ActionStub::class, $action);
         $this->assertInstanceOf(Action::class, $action);
     }
@@ -50,11 +51,11 @@ class ActionFactoryTest extends TestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('there is no NOT stubed action on the enum');
-        $actionFactory = $this->instanceSuccess();
-        $actionFactory->create('NOT stubed');
+        $this->sut = $this->createSut();
+        $this->sut->create('NOT stubed');
     }
 
-    private function instanceSuccess()
+    private function createSut()
     {
         return new ActionFactory(ActionsEnumStub::class);
     }
