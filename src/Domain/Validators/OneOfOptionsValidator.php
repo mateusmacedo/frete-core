@@ -6,7 +6,9 @@ namespace Frete\Core\Domain\Validators;
 
 class OneOfOptionsValidator extends Validator
 {
-    private array $validOptions = [];
+    public function __construct(private array $validOptions = [])
+    {
+    }
 
     public function setOptions(array $options): mixed
     {

@@ -12,25 +12,23 @@ class ValidatorCompositeTest extends TestCase
     public function testAddValidator()
     {
         $validatorComposite = new ValidatorComposite();
-        $validator1 = $this->createMock(Validator::class);
-        $validator2 = $this->createMock(Validator::class);
-
+        $validator1 = $this->createStub(Validator::class);
+        $validator2 = $this->createStub(Validator::class);
         $validatorComposite->addValidator($validator1);
         $validatorComposite->addValidator($validator2);
 
-        $this->assertCount(2, $validatorComposite->validators);
+        $this->assertCount(2, $validatorComposite->getValidators());
     }
 
     public function testValidateSingleValue()
     {
         $validatorComposite = new ValidatorComposite();
 
-        $validator1 = $this->createMock(Validator::class);
+        $validatorComposite = new ValidatorComposite();
+        $validator1 = $this->createStub(Validator::class);
         $validator1->method('validate')->willReturn(true);
-
-        $validator2 = $this->createMock(Validator::class);
+        $validator2 = $this->createStub(Validator::class);
         $validator2->method('validate')->willReturn(true);
-
         $validatorComposite->addValidator($validator1);
         $validatorComposite->addValidator($validator2);
 
@@ -40,29 +38,46 @@ class ValidatorCompositeTest extends TestCase
 
     public function testValidateMultipleValues()
     {
-        $validatorComposite = new ValidatorComposite();
+        $input = ['some-value-1', ['some-value-2', 'some-value-3']];
 
-        $validator1 = $this->createMock(Validator::class);
-        $validator1->method('validate')->willReturn(false);
-        $validator1->method('getErrorMessage')->willReturn('validation error 1');
+        $expected = [
+            'isValid' => false,
+            'errorMessage' => [
+                [
+                    'validation error 2',
+                    'validation error 3',
+                ],
+                [
+                    ['validation error 2', 'validation error 2'],
+                    ['validation error 3', 'validation error 3']
+                ],
+            ],
+        ];
 
-        $validator2 = $this->createMock(Validator::class);
+        $validator1 = $this->createStub(Validator::class);
+        $validator1->method('validate')->willReturn(true);
+
+        $validator2 = $this->createStub(Validator::class);
         $validator2->method('validate')->willReturn(false);
-        $validator2->method('getErrorMessage')->willReturn('validation error 2');
+        $validator2->method('getErrorMessage')->willReturnOnConsecutiveCalls(
+            'validation error 2',['validation error 2', 'validation error 2']
+        );
 
+        $validator3 = $this->createStub(Validator::class);
+        $validator3->method('validate')->willReturn(false);
+        $validator3->method('getErrorMessage')->willReturnOnConsecutiveCalls(
+            'validation error 3',['validation error 3', 'validation error 3']
+        );
+
+        $validatorComposite = new ValidatorComposite();
         $validatorComposite->addValidator($validator1);
         $validatorComposite->addValidator($validator2);
+        $validatorComposite->addValidator($validator3);
 
-        $input = ['some-value-1', 'some-value-2'];
-        $isValid = $validatorComposite->validate($input);
-        $errors = $validatorComposite->getErrorMessage();
-
-        $this->assertFalse($isValid);
-        $this->assertCount(2, $errors);
-        foreach ($errors as $error) {
-            $this->assertCount(2, $error);
-            $this->assertContains('validation error 1', $error);
-            $this->assertContains('validation error 2', $error);
-        }
+        $actual = [
+            'isValid' => $validatorComposite->validate($input),
+            'errorMessage' => $validatorComposite->getErrorMessage(),
+        ];
+        $this->assertEquals($expected, $actual);
     }
 }

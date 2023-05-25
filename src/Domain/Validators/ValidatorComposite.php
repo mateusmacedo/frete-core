@@ -9,11 +9,10 @@ use Traversable;
 
 class ValidatorComposite extends Validator
 {
-    private ArrayObject $errorMessage;
-
-    public function __construct(public readonly ArrayObject $validators = new ArrayObject())
-    {
-        $this->errorMessage = new ArrayObject();
+    public function __construct(
+        protected ArrayObject $validators = new ArrayObject(),
+        protected ArrayObject $errorMessage = new ArrayObject()
+    ) {
     }
 
     /**
@@ -24,28 +23,17 @@ class ValidatorComposite extends Validator
         $this->validators->append($validator);
     }
 
+    public function getValidators(): ArrayObject
+    {
+        return $this->validators;
+    }
+
     /**
      * @return array
      */
     public function getErrorMessage(): array
     {
         return $this->errorMessage->getArrayCopy();
-    }
-
-    protected function validateCollection(array | Traversable $input, ArrayObject $errors): ArrayObject
-    {
-        foreach ($input as $key => $value) {
-            $valueErrorMessages = new ArrayObject();
-            foreach ($this->validators as $validator) {
-                if (!$validator->validate([$key => $value])) {
-                    $valueErrorMessages->append($validator->getErrorMessage());
-                }
-            }
-            if ($valueErrorMessages->count() > 0) {
-                $errors->append($valueErrorMessages->getArrayCopy());
-            }
-        }
-        return $errors;
     }
 
     /**
@@ -55,15 +43,32 @@ class ValidatorComposite extends Validator
      */
     public function validate(mixed $input): bool
     {
-        $this->errorMessage = new ArrayObject();
+        $this->errorMessage->exchangeArray([]);
 
         if (is_array($input) || $input instanceof Traversable) {
-            $collectionError = $this->validateCollection($input, $this->errorMessage);
-            return 0 === $collectionError->count();
+            return $this->validateCollection($input);
         }
+
         foreach ($this->validators as $validator) {
             if (!$validator->validate($input)) {
                 $this->errorMessage->append($validator->getErrorMessage());
+            }
+        }
+
+        return 0 === $this->errorMessage->count();
+    }
+
+    protected function validateCollection(array|Traversable $input): bool
+    {
+        $validatorIterator = $this->validators->getIterator();
+        foreach ($input as $key => $value) {
+            foreach ($validatorIterator as $validator) {
+                if (!$validator->validate($value)) {
+                    $previousErrorMessage = $this->errorMessage->offsetGet($key) ?? [];
+                    $errorMessage = $validator->getErrorMessage();
+                    $previousErrorMessage[] = $errorMessage;
+                    $this->errorMessage->offsetSet($key, $previousErrorMessage);
+                }
             }
         }
         return 0 === $this->errorMessage->count();
