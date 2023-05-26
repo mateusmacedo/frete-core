@@ -38,7 +38,7 @@ class AttributeValidator extends Validator
             $this->validator->validate($input->{$this->attribute});
         }
 
-        if (is_array($input) && isset($input[$this->attribute])) {
+        if (is_array($input) && array_key_exists($this->attribute, $input)) {
             $this->validator->validate($input[$this->attribute]);
         }
 

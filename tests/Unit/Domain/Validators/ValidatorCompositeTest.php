@@ -47,11 +47,9 @@ class ValidatorCompositeTest extends TestCase
         $expected = [
             'isValid' => false,
             'errorMessage' => [
-                [
-                    0 => 'error',
-                    1 => 'error',
-                    2 => 'error',
-                ]
+                0 => 'error',
+                1 => 'error',
+                2 => 'error',
             ]
         ];
 

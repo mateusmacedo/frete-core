@@ -109,22 +109,16 @@ final class ValidatorCompositeTest extends TestCase
             'isValid' => false,
             'errorMessage' => [
                 [
-                    [
-                        'Cannot be null',
-                        'Invalid string',
-                    ]
+                    'Cannot be null',
+                    'Invalid string',
                 ],
                 [
-                    [
-                        'Cannot be null',
-                        'Invalid string',
-                    ]
+                    'Cannot be null',
+                    'Invalid string',
                 ],
                 [
-                    [
-                        'Cannot be null',
-                        'Invalid string',
-                    ]
+                    'Cannot be null',
+                    'Invalid string',
                 ]
             ],
         ];
@@ -136,7 +130,6 @@ final class ValidatorCompositeTest extends TestCase
             'isValid' => $sut->validate($input),
             'errorMessage' => $sut->getErrorMessage(),
         ];
-        var_dump($actual);
         $this->assertEquals($expected, $actual);
     }
 
@@ -154,22 +147,16 @@ final class ValidatorCompositeTest extends TestCase
             'isValid' => false,
             'errorMessage' => [
                 [
-                    [
-                        'Cannot be null',
-                        'Invalid float number',
-                    ]
+                    'Cannot be null',
+                    'Invalid float number',
                 ],
                 [
-                    [
-                        'Cannot be null',
-                        'Invalid float number',
-                    ]
+                    'Cannot be null',
+                    'Invalid float number',
                 ],
                 [
-                    [
-                        'Cannot be null',
-                        'Invalid float number',
-                    ]
+                    'Cannot be null',
+                    'Invalid float number',
                 ]
             ],
         ];
