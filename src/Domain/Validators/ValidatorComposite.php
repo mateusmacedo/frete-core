@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Frete\Core\Domain\Validators;
 
 use ArrayObject;
-use Traversable;
 
 class ValidatorComposite extends Validator
 {
@@ -45,32 +44,13 @@ class ValidatorComposite extends Validator
     {
         $this->errorMessage->exchangeArray([]);
 
-        if (is_array($input) || $input instanceof Traversable) {
-            return $this->validateCollection($input);
-        }
-
         foreach ($this->validators as $validator) {
-            if (!$validator->validate($input)) {
-                $this->errorMessage->append($validator->getErrorMessage());
+            if ($validator->validate($input)) {
+                continue;
             }
+            $this->errorMessage->append($validator->getErrorMessage());
         }
 
-        return 0 === $this->errorMessage->count();
-    }
-
-    protected function validateCollection(array|Traversable $input): bool
-    {
-        $validatorIterator = $this->validators->getIterator();
-        foreach ($input as $key => $value) {
-            foreach ($validatorIterator as $validator) {
-                if (!$validator->validate($value)) {
-                    $previousErrorMessage = $this->errorMessage->offsetGet($key) ?? [];
-                    $errorMessage = $validator->getErrorMessage();
-                    $previousErrorMessage[] = $errorMessage;
-                    $this->errorMessage->offsetSet($key, $previousErrorMessage);
-                }
-            }
-        }
         return 0 === $this->errorMessage->count();
     }
 }

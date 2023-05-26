@@ -6,6 +6,7 @@ namespace Tests\Integration\Domain\Validators;
 
 use Frete\Core\Domain\Validators\FloatValidator;
 use Frete\Core\Domain\Validators\{NotNullValidator, StringValidator, ValidatorComposite};
+use Frete\Core\Domain\Validators\ValidatorCollectionDecorator;
 use Tests\TestCase;
 
 final class ValidatorCompositeTest extends TestCase
@@ -35,10 +36,30 @@ final class ValidatorCompositeTest extends TestCase
         return $notNullStringValidator;
     }
 
+    public function createNotNullStringCompositeValidatorWithCollectionDecorator(): ValidatorComposite
+    {
+        $notNullValidator = new ValidatorCollectionDecorator(new NotNullValidator());
+        $stringValidator = new ValidatorCollectionDecorator(new StringValidator());
+        $notNullStringValidator = new ValidatorComposite();
+        $notNullStringValidator->addValidator($notNullValidator);
+        $notNullStringValidator->addValidator($stringValidator);
+        return $notNullStringValidator;
+    }
+
     public function createNotNullFloatCompositeValidator(): ValidatorComposite
     {
         $notNullValidator = new NotNullValidator();
         $floatValidator = new FloatValidator();
+        $notNullFloatValidator = new ValidatorComposite();
+        $notNullFloatValidator->addValidator($notNullValidator);
+        $notNullFloatValidator->addValidator($floatValidator);
+        return $notNullFloatValidator;
+    }
+
+    public function createNotNullFloatCompositeValidatorWithCollectionDecorator(): ValidatorComposite
+    {
+        $notNullValidator = new ValidatorCollectionDecorator(new NotNullValidator());
+        $floatValidator = new ValidatorCollectionDecorator(new FloatValidator());
         $notNullFloatValidator = new ValidatorComposite();
         $notNullFloatValidator->addValidator($notNullValidator);
         $notNullFloatValidator->addValidator($floatValidator);
@@ -76,7 +97,7 @@ final class ValidatorCompositeTest extends TestCase
 
     public function testShouldValidateNotNullStringWithThreeArrayEntries(): void
     {
-        $validator = $this->createNotNullStringCompositeValidator();
+        $validator = $this->createNotNullStringCompositeValidatorWithCollectionDecorator();
         $this->createSutWithValidator([$validator]);
         $this->assertTrue($this->sut->validate(['test', 'test2', 'test3']));
     }
@@ -110,16 +131,18 @@ final class ValidatorCompositeTest extends TestCase
 
         $validator = $this->createNotNullStringCompositeValidator();
         $this->createSutWithValidator([$validator]);
+        $sut = new ValidatorCollectionDecorator($this->sut);
         $actual = [
-            'isValid' => $this->sut->validate($input),
-            'errorMessage' => $this->sut->getErrorMessage(),
+            'isValid' => $sut->validate($input),
+            'errorMessage' => $sut->getErrorMessage(),
         ];
+        var_dump($actual);
         $this->assertEquals($expected, $actual);
     }
 
     public function testShouldValidateNotNullFloatWithThreeArrayEntries(): void
     {
-        $validator = $this->createNotNullFloatCompositeValidator();
+        $validator = $this->createNotNullFloatCompositeValidatorWithCollectionDecorator();
         $this->createSutWithValidator([$validator]);
         $this->assertTrue($this->sut->validate([1.1, 2.2, 3.3]));
     }
@@ -153,9 +176,10 @@ final class ValidatorCompositeTest extends TestCase
 
         $validator = $this->createNotNullFloatCompositeValidator();
         $this->createSutWithValidator([$validator]);
+        $sut = new ValidatorCollectionDecorator($this->sut);
         $actual = [
-            'isValid' => $this->sut->validate($input),
-            'errorMessage' => $this->sut->getErrorMessage(),
+            'isValid' => $sut->validate($input),
+            'errorMessage' => $sut->getErrorMessage(),
         ];
         $this->assertEquals($expected, $actual);
     }
