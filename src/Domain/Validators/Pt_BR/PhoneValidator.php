@@ -8,9 +8,17 @@ use Frete\Core\Domain\Validators\Validator;
 
 class PhoneValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function validate(mixed $input): bool
     {
-        return (bool) preg_match('/^\\+[0-9]{2}\\([0-9]{2}\\)[0-9]?[0-9]{4}-[0-9]{4}$/', $input);
+        if (empty($input)) {
+            return false;
+        }
+
+        preg_match('/(\+[0-9]{2})?(([(][0-9]{2}[)])?([0-9]{2})?)9?[0-9]{4}-?[0-9]{4}/', $input, $matches);
+        $this->isValid = $input === $matches[0];
+        return $this->isValid;
     }
 
     /**
@@ -18,6 +26,6 @@ class PhoneValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Invalid phone number';
+        return !$this->isValid ? 'Invalid phone number' : null;
     }
 }
