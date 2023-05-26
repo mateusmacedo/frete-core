@@ -8,9 +8,8 @@ use Ecotone\AnnotationFinder\AnnotationFinder;
 use Ecotone\Messaging\Attribute\ModuleAnnotation;
 use Ecotone\Messaging\Config\Annotation\AnnotationModule;
 use Ecotone\Messaging\Config\Annotation\ModuleConfiguration\NoExternalConfigurationModule;
-use Ecotone\Messaging\Config\ModuleReferenceSearchService;
+use Ecotone\Messaging\Config\{Configuration, ModuleReferenceSearchService};
 use Ecotone\Messaging\Handler\InterfaceToCallRegistry;
-use Ecotone\Messaging\Config\Configuration;
 use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\KafkaInboundChannelAdapterBuilder;
 
 #[ModuleAnnotation]

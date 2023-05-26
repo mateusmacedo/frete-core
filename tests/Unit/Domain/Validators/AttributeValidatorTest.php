@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Tests\Unit\Domain\Validators;
 
 use Frete\Core\Domain\Validators\{AttributeValidator, Validator};
-use Frete\Core\Domain\Validators\ValidatorComposite;
-use stdClass;
 use Tests\TestCase;
 
 class AttributeValidatorTest extends TestCase

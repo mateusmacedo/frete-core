@@ -13,10 +13,10 @@ class DefaultMessageHeader implements IHeaderMessage
         return [
             'TraceId' => $this->generateTraceId(),
             'Source' => getenv('APP_NAME') ?? '',
-            'SchemaVersion' => getenv('QUEUE_CUSTOM_HEADER_SCHEMA_VERSION') != false ? getenv('QUEUE_CUSTOM_HEADER_SCHEMA_VERSION') : '1.0',
+            'SchemaVersion' => false != getenv('QUEUE_CUSTOM_HEADER_SCHEMA_VERSION') ? getenv('QUEUE_CUSTOM_HEADER_SCHEMA_VERSION') : '1.0',
             'Timestamp' => $this->generateTimestamp(),
-            'Key' => getenv('QUEUE_CUSTOM_HEADER_KEY') != false ? getenv('QUEUE_CUSTOM_HEADER_KEY') : '',
-            'EventType' => getenv('QUEUE_CUSTOM_HEADER_EVENT_TYPE') != false ? getenv('QUEUE_CUSTOM_HEADER_EVENT_TYPE') : ''
+            'Key' => false != getenv('QUEUE_CUSTOM_HEADER_KEY') ? getenv('QUEUE_CUSTOM_HEADER_KEY') : '',
+            'EventType' => false != getenv('QUEUE_CUSTOM_HEADER_EVENT_TYPE') ? getenv('QUEUE_CUSTOM_HEADER_EVENT_TYPE') : ''
         ];
     }
 

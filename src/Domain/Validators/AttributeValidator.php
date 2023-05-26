@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Frete\Core\Domain\Validators;
 
-use ArrayObject;
-use Traversable;
-
 class AttributeValidator extends Validator
 {
     public function __construct(

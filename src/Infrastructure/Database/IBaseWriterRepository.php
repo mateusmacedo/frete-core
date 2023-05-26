@@ -7,7 +7,6 @@ namespace Frete\Core\Infrastructure\Database;
 use Frete\Core\Domain\Entity;
 use Frete\Core\Infrastructure\Errors\InfrastructureError;
 
-
 interface IBaseWriterRepository
 {
     public function upsert(Entity $data): InfrastructureError|bool;

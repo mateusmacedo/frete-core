@@ -21,7 +21,7 @@ class OneOfOptionsValidator extends Validator
         return in_array($input, $this->validOptions, strict: true);
     }
 
-      /**
+    /**
      * @return null|array|string
      */
     public function getErrorMessage(): array|string|null

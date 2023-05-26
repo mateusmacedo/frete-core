@@ -18,7 +18,7 @@ class BooleanValidatorTest extends TestCase
     public function testShouldNotValidateBoolean()
     {
         $validator = new BooleanValidator();
-        $this->assertFalse($validator->validate("true"));
+        $this->assertFalse($validator->validate('true'));
         $this->assertEquals('Invalid boolean', $validator->getErrorMessage());
     }
 }

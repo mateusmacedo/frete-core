@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration;
+
 use Ecotone\Enqueue\EnqueueMessageConsumerConfiguration;
 use Enqueue\RdKafka\RdKafkaConnectionFactory;
 use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\KafkaInboundChannelAdapterBuilder;

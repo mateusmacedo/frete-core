@@ -10,8 +10,7 @@ abstract class AbstractFactory
 
     abstract public function create(mixed $data = null): mixed;
 
-    abstract protected function reset(mixed $data): void;
-     public static function buildEnum($className, $data): mixed
+    public static function buildEnum($className, $data): mixed
     {
         $instance = $className::tryfrom($data);
         if ($instance instanceof $className) {
@@ -38,4 +37,6 @@ abstract class AbstractFactory
             }
         }
     }
+
+    abstract protected function reset(mixed $data): void;
 }

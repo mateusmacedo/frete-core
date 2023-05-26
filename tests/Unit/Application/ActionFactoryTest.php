@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Tests\Unit\Application;
 
 use Exception;
-use Frete\Core\Application\{ActionFactory, IActionFactory};
 use Frete\Core\Application\Action;
+use Frete\Core\Application\{ActionFactory, IActionFactory};
 use Tests\TestCase;
-use Tests\Unit\Application\Stubs\ActionsEnumStub;
-use Tests\Unit\Application\Stubs\ActionStub;
+use Tests\Unit\Application\Stubs\{ActionStub, ActionsEnumStub};
 
 class ActionFactoryTest extends TestCase
 {

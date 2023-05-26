@@ -7,20 +7,13 @@ namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration;
 use Ecotone\AnnotationFinder\AnnotationFinder;
 use Ecotone\Messaging\Attribute\ModuleAnnotation;
 use Ecotone\Messaging\Config\Annotation\AnnotationModule;
-use Ecotone\Messaging\Config\Annotation\ModuleConfiguration\ExtensionObjectResolver;
-use Ecotone\Messaging\Config\Annotation\ModuleConfiguration\NoExternalConfigurationModule;
-use Ecotone\Messaging\Config\Configuration;
-use Ecotone\Messaging\Config\ModuleReferenceSearchService;
-use Ecotone\Messaging\Config\ServiceConfiguration;
+use Ecotone\Messaging\Config\Annotation\ModuleConfiguration\{ExtensionObjectResolver, NoExternalConfigurationModule};
+use Ecotone\Messaging\Config\{Configuration, ModuleReferenceSearchService, ServiceConfiguration};
 use Ecotone\Messaging\Conversion\MediaType;
 use Ecotone\Messaging\Handler\Gateway\GatewayProxyBuilder;
-use Ecotone\Messaging\Handler\Gateway\ParameterToMessageConverter\GatewayHeaderBuilder;
-use Ecotone\Messaging\Handler\Gateway\ParameterToMessageConverter\GatewayHeadersBuilder;
-use Ecotone\Messaging\Handler\Gateway\ParameterToMessageConverter\GatewayHeaderValueBuilder;
-use Ecotone\Messaging\Handler\Gateway\ParameterToMessageConverter\GatewayPayloadBuilder;
+use Ecotone\Messaging\Handler\Gateway\ParameterToMessageConverter\{GatewayHeaderBuilder, GatewayHeaderValueBuilder, GatewayHeadersBuilder, GatewayPayloadBuilder};
 use Ecotone\Messaging\Handler\InterfaceToCallRegistry;
-use Ecotone\Messaging\MessageHeaders;
-use Ecotone\Messaging\MessagePublisher;
+use Ecotone\Messaging\{MessageHeaders, MessagePublisher};
 use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\KafkaOutboundChannelAdapterBuilder;
 
 #[ModuleAnnotation]

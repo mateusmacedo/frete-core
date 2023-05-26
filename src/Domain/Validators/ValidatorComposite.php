@@ -52,9 +52,8 @@ class ValidatorComposite extends Validator
             if (is_array($errorMessage)) {
                 $this->errorMessage->exchangeArray(array_merge($this->errorMessage->getArrayCopy(), $errorMessage));
                 continue;
-            } else {
-                $this->errorMessage->append($errorMessage);
             }
+            $this->errorMessage->append($errorMessage);
         }
 
         return 0 === $this->errorMessage->count();

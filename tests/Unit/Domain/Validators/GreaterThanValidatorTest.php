@@ -22,7 +22,7 @@ class GreaterThanValidatorTest extends TestCase
         $validator = new GreaterThanValidator(0);
         $this->assertFalse($validator->validate(-10));
         $this->assertFalse($validator->validate(0));
-        $this->assertFalse($validator->validate("not a number"));
+        $this->assertFalse($validator->validate('not a number'));
     }
 
     public function testGetErrorMessageReturnsString()
@@ -35,6 +35,6 @@ class GreaterThanValidatorTest extends TestCase
     {
         $min = -5;
         $validator = new GreaterThanValidator($min);
-        $this->assertEquals("Value must be numeric and greater than $min", $validator->getErrorMessage());
+        $this->assertEquals("Value must be numeric and greater than {$min}", $validator->getErrorMessage());
     }
 }

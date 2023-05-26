@@ -8,12 +8,11 @@ class GreaterThanValidator extends Validator
 {
     public function __construct(private int $min)
     {
-        
     }
 
     public function validate(mixed $input): bool
     {
-        return ((is_float($input) || is_int($input)) && ($input > $this->min));
+        return (is_float($input) || is_int($input)) && ($input > $this->min);
     }
 
     /**

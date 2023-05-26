@@ -11,7 +11,7 @@ class PositiveNumberValidator extends Validator
         return (is_float($input) || is_int($input)) && $input >= 0;
     }
 
-      /**
+    /**
      * @return null|array|string
      */
     public function getErrorMessage(): array|string|null

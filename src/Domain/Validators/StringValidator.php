@@ -11,7 +11,7 @@ class StringValidator extends Validator
         return is_string($input);
     }
 
-      /**
+    /**
      * @return null|array|string
      */
     public function getErrorMessage(): array|string|null

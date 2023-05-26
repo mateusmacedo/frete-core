@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Integration\Domain\Validators;
 
-use Frete\Core\Domain\Validators\FloatValidator;
+use Frete\Core\Domain\Validators\{FloatValidator, ValidatorCollectionDecorator};
 use Frete\Core\Domain\Validators\{NotNullValidator, StringValidator, ValidatorComposite};
-use Frete\Core\Domain\Validators\ValidatorCollectionDecorator;
 use Tests\TestCase;
 
 final class ValidatorCompositeTest extends TestCase

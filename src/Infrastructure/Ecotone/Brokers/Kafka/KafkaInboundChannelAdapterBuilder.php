@@ -3,16 +3,14 @@
 declare(strict_types=1);
 
 namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka;
-use Ecotone\Enqueue\CachedConnectionFactory;
-use Ecotone\Enqueue\EnqueueInboundChannelAdapterBuilder;
-use Ecotone\Enqueue\HttpReconnectableConnectionFactory;
-use Ecotone\Enqueue\InboundMessageConverter;
+
+use Ecotone\Enqueue\{CachedConnectionFactory, EnqueueInboundChannelAdapterBuilder, HttpReconnectableConnectionFactory, InboundMessageConverter};
 use Ecotone\Messaging\Conversion\ConversionService;
 use Ecotone\Messaging\Endpoint\PollingMetadata;
-use Ecotone\Messaging\Handler\ChannelResolver;
-use Ecotone\Messaging\Handler\ReferenceSearchService;
+use Ecotone\Messaging\Handler\{ChannelResolver, ReferenceSearchService};
 use Ecotone\Messaging\MessageConverter\DefaultHeaderMapper;
 use Enqueue\RdKafka\RdKafkaConnectionFactory;
+
 final class KafkaInboundChannelAdapterBuilder extends EnqueueInboundChannelAdapterBuilder
 {
     public static function createWith(string $endpointId, string $topicName, ?string $requestChannelName, string $connectionReferenceName = RdKafkaConnectionFactory::class): self

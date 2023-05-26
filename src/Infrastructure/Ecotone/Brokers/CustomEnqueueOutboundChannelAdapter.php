@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Frete\Core\Infrastructure\Ecotone\Brokers;
 
-use Ecotone\Enqueue\CachedConnectionFactory;
-use Ecotone\Enqueue\OutboundMessageConverter;
-use Ecotone\Messaging\Message;
-use Ecotone\Messaging\MessageHandler;
-use Ecotone\Messaging\MessageHeaders;
+use Ecotone\Enqueue\{CachedConnectionFactory, OutboundMessageConverter};
+use Ecotone\Messaging\{Message, MessageHandler, MessageHeaders};
 use Frete\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\IHeaderMessage;
 use Interop\Queue\Destination;
 
 abstract class CustomEnqueueOutboundChannelAdapter implements MessageHandler
 {
     private bool $initialized = false;
+
     public function __construct(
         protected CachedConnectionFactory $connectionFactory,
         protected Destination $destination,

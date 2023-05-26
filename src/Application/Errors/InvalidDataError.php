@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Frete\Core\Application\Errors;
 
-use Frete\Core\Application\Errors\ApplicationError;
-
 class InvalidDataError extends ApplicationError
 {
     public function __construct(

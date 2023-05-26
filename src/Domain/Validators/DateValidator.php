@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 namespace Frete\Core\Domain\Validators;
+
 use DateTime;
+use Exception;
 
 class DateValidator extends Validator
 {
-
     public function validate(mixed $input): bool
     {
         return $this->isString($input) && $this->isAValidDate($input);
@@ -26,11 +27,12 @@ class DateValidator extends Validator
         return is_string($input);
     }
 
-    private function isAValidDate($date){
-        try{
+    private function isAValidDate($date)
+    {
+        try {
             $date = new DateTime($date);
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }

@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka;
 
-use Ecotone\Enqueue\CachedConnectionFactory;
-use Ecotone\Enqueue\OutboundMessageConverter;
+use Ecotone\Enqueue\{CachedConnectionFactory, OutboundMessageConverter};
 use Enqueue\RdKafka\RdKafkaTopic;
 use Frete\Core\Infrastructure\Ecotone\Brokers\CustomEnqueueOutboundChannelAdapter;
 use Frete\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\IHeaderMessage;

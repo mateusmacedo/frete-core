@@ -4,13 +4,9 @@ declare(strict_types=1);
 
 namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka;
 
-use Ecotone\Enqueue\CachedConnectionFactory;
-use Ecotone\Enqueue\EnqueueOutboundChannelAdapterBuilder;
-use Ecotone\Enqueue\HttpReconnectableConnectionFactory;
-use Ecotone\Enqueue\OutboundMessageConverter;
-use Ecotone\Messaging\Handler\ChannelResolver;
-use Ecotone\Messaging\Handler\ReferenceSearchService;
+use Ecotone\Enqueue\{CachedConnectionFactory, EnqueueOutboundChannelAdapterBuilder, HttpReconnectableConnectionFactory, OutboundMessageConverter};
 use Ecotone\Messaging\Conversion\ConversionService;
+use Ecotone\Messaging\Handler\{ChannelResolver, ReferenceSearchService};
 use Ecotone\Messaging\MessageConverter\DefaultHeaderMapper;
 use Enqueue\RdKafka\RdKafkaConnectionFactory;
 use Frete\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\DefaultMessageHeader;
@@ -34,7 +30,7 @@ class KafkaOutboundChannelAdapterBuilder extends EnqueueOutboundChannelAdapterBu
         /** @var ConversionService $conversionService */
         $conversionService = $referenceSearchService->get(ConversionService::REFERENCE_NAME);
 
-        /* call the headers HERE! */
+        // call the headers HERE!
         $messageBrokerHeadersReferenceName = new ($this->messageBrokerHeadersReferenceName)();
 
         $headerMapper = DefaultHeaderMapper::createWith([], $this->headerMapper, $conversionService);

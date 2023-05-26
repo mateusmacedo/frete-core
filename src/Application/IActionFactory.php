@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Frete\Core\Application;
 
-use ArrayObject;
 use BackedEnum;
 
 interface IActionFactory

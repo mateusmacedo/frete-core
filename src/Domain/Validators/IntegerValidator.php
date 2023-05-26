@@ -11,7 +11,7 @@ class IntegerValidator extends Validator
         return is_int($input);
     }
 
-     /**
+    /**
      * @return null|array|string
      */
     public function getErrorMessage(): array|string|null

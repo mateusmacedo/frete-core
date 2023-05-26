@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Frete\Core\Application;
 
-interface IMessageDispatcher {
+interface IMessageDispatcher
+{
     public function dispatch(Action $message): void;
 }

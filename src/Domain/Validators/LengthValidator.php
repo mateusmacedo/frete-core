@@ -8,13 +8,12 @@ class LengthValidator extends Validator
 {
     public function __construct(private int $minLength, private int $maxLength)
     {
-
     }
 
     public function validate(mixed $input): bool
     {
         $inputLen = strlen($input);
-        return ($inputLen >= $this->minLength && $inputLen <= $this->maxLength);
+        return $inputLen >= $this->minLength && $inputLen <= $this->maxLength;
     }
 
     /**
