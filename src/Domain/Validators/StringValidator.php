@@ -6,9 +6,12 @@ namespace Frete\Core\Domain\Validators;
 
 class StringValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function validate(mixed $input): bool
     {
-        return is_string($input);
+        $this->isValid = is_string($input);
+        return $this->isValid;
     }
 
     /**
@@ -16,6 +19,6 @@ class StringValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Invalid string';
+        return !$this->isValid ? 'Invalid string' : null;
     }
 }

@@ -6,9 +6,12 @@ namespace Frete\Core\Domain\Validators;
 
 class IntegerValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function validate(mixed $input): bool
     {
-        return is_int($input);
+        $this->isValid = is_int($input);
+        return $this->isValid;
     }
 
     /**
@@ -16,6 +19,6 @@ class IntegerValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Invalid integer number';
+        return !$this->isValid ? 'Invalid integer number' : null;
     }
 }

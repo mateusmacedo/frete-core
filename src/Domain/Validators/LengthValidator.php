@@ -6,6 +6,8 @@ namespace Frete\Core\Domain\Validators;
 
 class LengthValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function __construct(private int $minLength, private int $maxLength)
     {
     }
@@ -13,7 +15,8 @@ class LengthValidator extends Validator
     public function validate(mixed $input): bool
     {
         $inputLen = strlen($input);
-        return $inputLen >= $this->minLength && $inputLen <= $this->maxLength;
+        $this->isValid = $inputLen >= $this->minLength && $inputLen <= $this->maxLength;
+        return $this->isValid;
     }
 
     /**
@@ -21,6 +24,6 @@ class LengthValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Invalid length';
+        return !$this->isValid ? 'Invalid length' : null;
     }
 }

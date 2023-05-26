@@ -6,9 +6,12 @@ namespace Frete\Core\Domain\Validators;
 
 class BooleanValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function validate(mixed $input): bool
     {
-        return is_bool($input);
+        $this->isValid = is_bool($input);
+        return $this->isValid;
     }
 
     /**
@@ -16,6 +19,6 @@ class BooleanValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Invalid boolean';
+        return !$this->isValid ? 'Invalid boolean' : null;
     }
 }

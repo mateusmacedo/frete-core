@@ -9,9 +9,12 @@ use Exception;
 
 class DateValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function validate(mixed $input): bool
     {
-        return $this->isString($input) && $this->isAValidDate($input);
+        $this->isValid = $this->isString($input) && $this->isAValidDate($input);
+        return $this->isValid;
     }
 
     /**
@@ -19,7 +22,7 @@ class DateValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Invalid date format';
+        return !$this->isValid ? 'Invalid date format' : null;
     }
 
     private function isString(mixed $input): bool

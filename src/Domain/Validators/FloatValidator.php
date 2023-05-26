@@ -6,9 +6,12 @@ namespace Frete\Core\Domain\Validators;
 
 class FloatValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function validate(mixed $input): bool
     {
-        return is_float($input);
+        $this->isValid = is_float($input);
+        return $this->isValid;
     }
 
     /**
@@ -16,6 +19,6 @@ class FloatValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Invalid float number';
+        return !$this->isValid ? 'Invalid float number' : null;
     }
 }

@@ -6,13 +6,16 @@ namespace Frete\Core\Domain\Validators;
 
 class LessThanValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function __construct(private int $max)
     {
     }
 
     public function validate(mixed $input): bool
     {
-        return (is_float($input) || is_int($input)) && $input < $this->max;
+        $this->isValid = (is_float($input) || is_int($input)) && $input < $this->max;
+        return $this->isValid;
     }
 
     /**
@@ -20,6 +23,6 @@ class LessThanValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return "The value must be numeric and less than {$this->max}";
+        return !$this->isValid ? "The value must be numeric and less than {$this->max}" : null;
     }
 }

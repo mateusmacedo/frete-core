@@ -6,9 +6,12 @@ namespace Frete\Core\Domain\Validators;
 
 class PositiveNumberValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function validate(mixed $input): bool
     {
-        return (is_float($input) || is_int($input)) && $input >= 0;
+        $this->isValid = (is_float($input) || is_int($input)) && $input >= 0;
+        return $this->isValid;
     }
 
     /**
@@ -16,6 +19,6 @@ class PositiveNumberValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Not a positive number';
+        return !$this->isValid ? 'Not a positive number' : null;
     }
 }

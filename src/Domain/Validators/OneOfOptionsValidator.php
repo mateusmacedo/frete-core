@@ -6,6 +6,8 @@ namespace Frete\Core\Domain\Validators;
 
 class OneOfOptionsValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function __construct(private array $validOptions = [])
     {
     }
@@ -18,7 +20,8 @@ class OneOfOptionsValidator extends Validator
 
     public function validate(mixed $input): bool
     {
-        return in_array($input, $this->validOptions, strict: true);
+        $this->isValid = in_array($input, $this->validOptions, strict: true);
+        return $this->isValid;
     }
 
     /**
@@ -26,6 +29,6 @@ class OneOfOptionsValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Invalid option';
+        return !$this->isValid ? 'Invalid option' : null;
     }
 }

@@ -6,9 +6,12 @@ namespace Frete\Core\Domain\Validators;
 
 class NotNullValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function validate(mixed $input): bool
     {
-        return null !== $input;
+        $this->isValid = null !== $input;
+        return $this->isValid;
     }
 
     /**
@@ -16,6 +19,6 @@ class NotNullValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Cannot be null';
+        return !$this->isValid ? 'Cannot be null' : null;
     }
 }

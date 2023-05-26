@@ -6,9 +6,12 @@ namespace Frete\Core\Domain\Validators;
 
 class NotEmptyValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function validate(mixed $input): bool
     {
-        return !empty($input);
+        $this->isValid = !empty($input);
+        return $this->isValid;
     }
 
     /**
@@ -16,6 +19,6 @@ class NotEmptyValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Cannot be empty';
+        return !$this->isValid ? 'Cannot be empty' : null;
     }
 }

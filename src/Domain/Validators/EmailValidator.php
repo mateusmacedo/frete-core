@@ -6,9 +6,12 @@ namespace Frete\Core\Domain\Validators;
 
 class EmailValidator extends Validator
 {
+    private ?bool $isValid = null;
+
     public function validate(mixed $input): bool
     {
-        return (bool) filter_var($input, FILTER_VALIDATE_EMAIL);
+        $this->isValid = (bool) filter_var($input, FILTER_VALIDATE_EMAIL);
+        return $this->isValid;
     }
 
     /**
@@ -16,6 +19,6 @@ class EmailValidator extends Validator
      */
     public function getErrorMessage(): array|string|null
     {
-        return 'Invalid email address';
+        return !$this->isValid ? 'Invalid email address' : null;
     }
 }
