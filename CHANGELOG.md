@@ -4,6 +4,23 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.2.1](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.2.0...v0.2.1) (2023-05-26)
+
+### Features
+
+* Added kafka driver for ecotone ([28692c](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/28692c69c0bc7540e58c919ebc2077f6b25dd95f), [7681c2](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/7681c25feba288c675bb134ce866751de830637b))
+
+### Bug Fixes
+
+* Adjust namespaces ([a86abd](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/a86abdc5f94703ae8979befb511fd76de0aba745), [e3726e](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/e3726edd899e2377846e260d858715138d014d6f))
+
+### Tests
+
+* :white_check_mark: cargo scenario for validate collection ([1e0c37](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/1e0c377ded87da9305e898fa6801f9fe2c2ba7a1))
+
+
+---
+
 ## [0.2.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.1.0...v0.2.0) (2023-05-26)
 
 ### Features
