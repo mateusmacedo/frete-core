@@ -35,15 +35,13 @@ class AttributeValidator extends Validator
     public function validate(mixed $input): bool
     {
         if (is_object($input) && isset($input->{$this->attribute})) {
-            $input = $input->{$this->attribute};
+            $this->validator->validate($input->{$this->attribute});
         }
 
         if (is_array($input) && isset($input[$this->attribute])) {
-            $input = $input[$this->attribute];
+            $this->validator->validate($input[$this->attribute]);
         }
 
-        $this->validator->validate($input);
-
-        return $this->validator->getErrorMessage() === null;
+        return empty($this->validator->getErrorMessage());
     }
 }
