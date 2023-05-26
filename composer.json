@@ -4,19 +4,22 @@
     "type": "library",
     "require": {
         "ecotone/enqueue": "^1.82",
+        "ecotone/jms-converter": "^1.82",
         "ecotone/lite-application": "^1.82",
-        "guzzlehttp/guzzle": "^7.7",
-        "enqueue/rdkafka": "^0.10.18"
+        "ecotone/redis": "^1.82",
+        "ecotone/sqs": "^1.82",
+        "enqueue/enqueue": "^0.10.18",
+        "enqueue/rdkafka": "^0.10.18",
+        "guzzlehttp/guzzle": "^7.7"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.22",
         "friendsofphp/php-cs-fixer": "^3.17",
         "marcocesarato/php-conventional-changelog": "^1.17",
         "mockery/mockery": "^1.5",
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^10.1"
     },
-    "license": "Mit",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Frete\\Core\\": "src/"
@@ -39,7 +42,7 @@
         "sort-packages": true,
         "process-timeout": 0
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
         "post-root-package-install": [
