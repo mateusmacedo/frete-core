@@ -32,12 +32,16 @@ abstract class CustomEnqueueOutboundChannelAdapter implements MessageHandler
         }
 
         $outboundMessage = $this->outboundMessageConverter->prepare($message);
-        $headers = $outboundMessage->getHeaders();
-        $headers[MessageHeaders::CONTENT_TYPE] = $outboundMessage->getContentType();
-
         $messageBrokerHeaders = $this->messageBrokerHeaders?->getSchema() ?? [];
 
-        $messageToSend = $this->connectionFactory->createContext()->createMessage($outboundMessage->getPayload(), $headers, $messageBrokerHeaders);
+        $messageToSend = $this->connectionFactory->createContext()->createMessage(
+            $outboundMessage->getPayload(),
+            [
+                MessageHeaders::CONTENT_TYPE => $outboundMessage->getContentType(),
+                $outboundMessage->getHeaders()
+            ],
+            $messageBrokerHeaders
+        );
 
         $this->connectionFactory->getProducer()
             ->setTimeToLive($outboundMessage->getTimeToLive())
