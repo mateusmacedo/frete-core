@@ -9,7 +9,6 @@ use Traversable;
 
 class AttributeValidator extends Validator
 {
-    protected string|array|ArrayObject|null $errorMessage;
     public function __construct(
         public readonly string $attribute,
         protected ?Validator $validator = null
@@ -28,21 +27,9 @@ class AttributeValidator extends Validator
 
     public function getErrorMessage()
     {
-        $errorMessage = null;
-        if (is_array($this->errorMessage)) {
-            $errorMessage = $this->errorMessage;
-        }
-        if ($this->errorMessage instanceof ArrayObject) {
-            $errorMessage = $this->errorMessage->getArrayCopy();
-        }
-        if (is_string($this->errorMessage)) {
-            $errorMessage = $this->errorMessage;
-        }
-        if (empty($errorMessage)) {
-            return null;
-        }
-        $result = [$this->attribute => $errorMessage];
-        return $result;
+        return [
+            $this->attribute => $this->validator->getErrorMessage()
+        ];
     }
 
     public function validate(mixed $input): bool
@@ -55,46 +42,8 @@ class AttributeValidator extends Validator
             $input = $input[$this->attribute];
         }
 
-        $this->errorMessage = null;
+        $this->validator->validate($input);
 
-        if (is_array($input) || $input instanceof Traversable) {
-            return $this->validateCollection($input);
-        }
-
-        if (!$this->validator->validate($input)) {
-            $this->errorMessage = $this->validator->getErrorMessage();
-        }
-
-        return $this->getErrorMessage()[$this->attribute] === null;
-    }
-
-    protected function validateCollection(array|Traversable $input): bool
-    {
-        $this->errorMessage = new ArrayObject();
-        foreach ($input as $key => $value) {
-            if (!$this->validator->validate($value)) {
-
-                $previousErrorMessage = $this->errorMessage->offsetGet($key);
-                $errorMessage = $this->validator->getErrorMessage();
-
-                if (is_array($previousErrorMessage)){
-                    if (is_array($errorMessage)) {
-                        $previousErrorMessage = array_merge($previousErrorMessage, $errorMessage);
-                    } else {
-                        $previousErrorMessage[] = $errorMessage;
-                    }
-                } else {
-                    if (is_null($previousErrorMessage)) {
-                        $previousErrorMessage = $errorMessage;
-                    } else {
-                        $previousErrorMessage = [$previousErrorMessage, $errorMessage];
-                    }
-                }
-
-                $this->errorMessage->offsetSet($key, $previousErrorMessage);
-            }
-        }
-
-        return 0 === $this->errorMessage->count();
+        return $this->validator->getErrorMessage() === null;
     }
 }

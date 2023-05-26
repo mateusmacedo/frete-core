@@ -45,127 +45,52 @@ class AttributeValidatorTest extends TestCase
         $validator = $this->createStub(Validator::class);
         $validator->method('validate')->willReturn(true);
         $attributeValidator = new AttributeValidator('attribute', $validator);
-
-        $this->assertTrue($attributeValidator->validate(['attribute' => 'validInput']));
-        $this->assertNull($attributeValidator->getErrorMessage());
-
-        $this->assertTrue($attributeValidator->validate(['attribute' => ['validInput', 'validInput']]));
-        $this->assertNull($attributeValidator->getErrorMessage());
-
-        $this->assertTrue($attributeValidator->validate([]));
-        $this->assertNull($attributeValidator->getErrorMessage());
-
-        $this->assertTrue($attributeValidator->validate(['attribute' => null]));
-        $this->assertNull($attributeValidator->getErrorMessage());
-
-        $inputClass = new stdClass();
-        $inputClass->attribute = 'validInput';
-
-        $this->assertTrue($attributeValidator->validate($inputClass));
-        $this->assertNull($attributeValidator->getErrorMessage());
-
-        $inputClass->attribute = ['validInput', 'validInput'];
-        $this->assertTrue($attributeValidator->validate($inputClass));
-        $this->assertNull($attributeValidator->getErrorMessage());
-
-        $inputClass->attribute = [];
-        $this->assertTrue($attributeValidator->validate($inputClass));
-        $this->assertNull($attributeValidator->getErrorMessage());
-
-        $inputClass->attribute = null;
-        $this->assertTrue($attributeValidator->validate($inputClass));
-        $this->assertNull($attributeValidator->getErrorMessage());
-
-        $inputClass = new stdClass();
-        $this->assertTrue($attributeValidator->validate($inputClass));
-        $this->assertNull($attributeValidator->getErrorMessage());
+        $this->assertTrue($attributeValidator->validate('input'));
     }
 
-    public function testValidateFail(): void
+    public function testValidateWithError(): void
     {
-        $input = ['attribute' => 'invalidInput'];
-        $errorMesssage = 'error';
-        $expectedErrorMessage = ['attribute' => $errorMesssage];
         $validator = $this->createStub(Validator::class);
         $validator->method('validate')->willReturn(false);
-        $validator->method('getErrorMessage')->willReturn($errorMesssage);
+        $validator->method('getErrorMessage')->willReturn('error');
         $attributeValidator = new AttributeValidator('attribute', $validator);
-        $this->assertFalse($attributeValidator->validate($input));
-        $this->assertEquals($expectedErrorMessage, $attributeValidator->getErrorMessage());
-
-        $input = ['attribute' => ['valid', 'invalidInput']];
-        $expectedErrorMessage = ['attribute' => [
-            1 => $errorMesssage
-        ]];
-        $validator = $this->createStub(Validator::class);
-        $validator->method('validate')->willReturnOnConsecutiveCalls(true, false);
-        $validator->method('getErrorMessage')->willReturn($errorMesssage);
-        $attributeValidator = new AttributeValidator('attribute', $validator);
-        $this->assertFalse($attributeValidator->validate($input));        $errorMesssage = 'error';
-
-        $this->assertEquals($expectedErrorMessage, $attributeValidator->getErrorMessage());
-
-        $input = new stdClass();
-        $input->attribute = 'invalidInput';
-        $expectedErrorMessage = ['attribute' => $errorMesssage];
-        $validator = $this->createStub(Validator::class);
-        $validator->method('validate')->willReturn(false);
-        $validator->method('getErrorMessage')->willReturn($errorMesssage);
-        $attributeValidator = new AttributeValidator('attribute', $validator);
-        $this->assertFalse($attributeValidator->validate($input));
-        $this->assertEquals($expectedErrorMessage, $attributeValidator->getErrorMessage());
-
-        $input->attribute = ['valid', 'invalidInput'];
-        $expectedErrorMessage = ['attribute' => [1 => $errorMesssage]];
-        $validator = $this->createStub(Validator::class);
-        $validator->method('validate')->willReturnOnConsecutiveCalls(true, false);
-        $validator->method('getErrorMessage')->willReturn($errorMesssage);
-        $attributeValidator = new AttributeValidator('attribute', $validator);
-        $this->assertFalse($attributeValidator->validate($input));
-        $this->assertEquals($expectedErrorMessage, $attributeValidator->getErrorMessage());
+        $this->assertFalse($attributeValidator->validate('input'));
+        $this->assertEquals(['attribute' => 'error'], $attributeValidator->getErrorMessage());
     }
 
-    public function testValidateFailWithValidatorGetMessageAsArray(): void
+    public function testValidateArray(): void
     {
-        $input = ['attribute' => 'invalidInput'];
-        $errorMesssage = ['error1', 'error2'];
-        $expectedErrorMessage = ['attribute' => $errorMesssage];
+        $validator = $this->createStub(Validator::class);
+        $validator->method('validate')->willReturn(true);
+        $attributeValidator = new AttributeValidator('attribute', $validator);
+        $this->assertTrue($attributeValidator->validate(['attribute' => 'input']));
+    }
+
+    public function testValidateArrayWithErrors(): void
+    {
         $validator = $this->createStub(Validator::class);
         $validator->method('validate')->willReturn(false);
-        $validator->method('getErrorMessage')->willReturn($errorMesssage);
+        $validator->method('getErrorMessage')->willReturn('error');
         $attributeValidator = new AttributeValidator('attribute', $validator);
-        $this->assertFalse($attributeValidator->validate($input));
-        $this->assertEquals($expectedErrorMessage, $attributeValidator->getErrorMessage());
+        $this->assertFalse($attributeValidator->validate(['attribute' => 'input']));
+        $this->assertEquals(['attribute' => 'error'], $attributeValidator->getErrorMessage());
+    }
 
-        $input = ['attribute' => ['valid', 'invalidInput']];
-        $errorMesssage = ['error1', 'error2'];
-        $expectedErrorMessage = ['attribute' => [1 => $errorMesssage]];
+    public function testValidateObject(): void
+    {
         $validator = $this->createStub(Validator::class);
-        $validator->method('validate')->willReturnOnConsecutiveCalls(true, false);
-        $validator->method('getErrorMessage')->willReturn($errorMesssage);
+        $validator->method('validate')->willReturn(true);
         $attributeValidator = new AttributeValidator('attribute', $validator);
-        $this->assertFalse($attributeValidator->validate($input));
-        $this->assertEquals($expectedErrorMessage, $attributeValidator->getErrorMessage());
+        $this->assertTrue($attributeValidator->validate((object) ['attribute' => 'input']));
+    }
 
-        $input = new stdClass();
-        $input->attribute = 'invalidInput';
-        $errorMesssage = ['error1', 'error2'];
-        $expectedErrorMessage = ['attribute' => $errorMesssage];
+    public function testValidateObjectWithErrors(): void
+    {
         $validator = $this->createStub(Validator::class);
         $validator->method('validate')->willReturn(false);
-        $validator->method('getErrorMessage')->willReturn($errorMesssage);
+        $validator->method('getErrorMessage')->willReturn('error');
         $attributeValidator = new AttributeValidator('attribute', $validator);
-        $this->assertFalse($attributeValidator->validate($input));
-        $this->assertEquals($expectedErrorMessage, $attributeValidator->getErrorMessage());
-
-        $input->attribute = ['valid', 'invalidInput'];
-        $errorMesssage = ['error1', 'error2'];
-        $expectedErrorMessage = ['attribute' => [1 => $errorMesssage]];
-        $validator = $this->createStub(Validator::class);
-        $validator->method('validate')->willReturnOnConsecutiveCalls(true, false);
-        $validator->method('getErrorMessage')->willReturn($errorMesssage);
-        $attributeValidator = new AttributeValidator('attribute', $validator);
-        $this->assertFalse($attributeValidator->validate($input));
-        $this->assertEquals($expectedErrorMessage, $attributeValidator->getErrorMessage());
+        $this->assertFalse($attributeValidator->validate((object) ['attribute' => 'input']));
+        $this->assertEquals(['attribute' => 'error'], $attributeValidator->getErrorMessage());
     }
 }
