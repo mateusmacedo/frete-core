@@ -34,7 +34,7 @@ class AttributeValidator extends Validator
 
     public function validate(mixed $input): bool
     {
-        if (is_object($input) && isset($input->{$this->attribute})) {
+        if (is_object($input) && property_exists($input, $this->attribute)) {
             $this->validator->validate($input->{$this->attribute});
         }
 
