@@ -4,10 +4,36 @@ declare(strict_types=1);
 
 namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka;
 
-use Ecotone\Enqueue\EnqueueInboundChannelAdapter;
+use Ecotone\Enqueue\CachedConnectionFactory;
+use Ecotone\Enqueue\HttpReconnectableConnectionFactory;
+use Ecotone\Enqueue\InboundMessageConverter;
+use Ecotone\Messaging\Endpoint\InboundChannelAdapterEntrypoint;
+use Frete\Core\Infrastructure\Ecotone\Brokers\CustomEnqueueInboundChannelAdapter;
+use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration\KafkaTopicConfiguration;
+use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Connection\KafkaConnectionFactory;
 
-final class KafkaInboundChannelAdapter extends EnqueueInboundChannelAdapter
+final class KafkaInboundChannelAdapter extends CustomEnqueueInboundChannelAdapter
 {
+    private $connection;
+    public function __construct(
+        KafkaConnectionFactory $connectionFactory,
+        InboundChannelAdapterEntrypoint $entrypointGateway,
+        bool $declareOnStartup,
+        string $queueName,
+        int $receiveTimeoutInMilliseconds,
+        InboundMessageConverter $inboundMessageConverter,
+        private ?KafkaTopicConfiguration $topicConfig = null
+    ) {
+        $this->connection = $connectionFactory;
+        parent::__construct(
+            CachedConnectionFactory::createFor(new HttpReconnectableConnectionFactory($connectionFactory)),
+            $entrypointGateway,
+            $declareOnStartup,
+            $queueName,
+            $receiveTimeoutInMilliseconds,
+            $inboundMessageConverter,
+        );
+    }
     public function initialize(): void
     {
         $context = $this->connectionFactory->createContext();
@@ -18,4 +44,29 @@ final class KafkaInboundChannelAdapter extends EnqueueInboundChannelAdapter
     {
         return ConnectException::class;
     }
+
+    protected function getMessageParamsConsume(): array|bool
+    {
+        if (!$this->topicConfig || empty($this->topicConfig->getConsumerPartitions()))
+            return true;
+
+        $kafkaConsumer = $this->connection->getConsumer('false');
+        $topicPartitions = array_map(
+            fn($val) => $this->connection->createTopicPartition($this->queueName, $val), $this->topicConfig->getConsumerPartitions()
+        );
+
+        $commitedOfssets = array_map(function ($val) {
+            if ($val->getOffset() == -1001)
+                $val->setOffset(0);
+            return $val;
+        }, $kafkaConsumer->getCommittedOffsets($topicPartitions, 2000));
+
+        $kafkaConsumer->assign($commitedOfssets);
+        $consumedMessage = $kafkaConsumer->consume(2000);
+        if ($consumedMessage->err != 0)
+            return false;
+
+        return ['offset' => $consumedMessage->offset, 'partition' => $consumedMessage->partition];
+    }
+
 }
