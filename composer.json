@@ -67,5 +67,5 @@
         "release:minor": "conventional-changelog --minor --commit",
         "release:major": "conventional-changelog --major --commit"
     },
-    "version": "0.2.1"
+    "version": "0.3.0"
 }

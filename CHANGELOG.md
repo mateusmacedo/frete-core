@@ -4,6 +4,30 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.3.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.2.1...v0.3.0) (2023-05-29)
+
+### Features
+
+* Added consume/produce messages in kafka partitions ([195aaa](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/195aaacb7dab0df00521a37a90454e89846db094))
+
+### Bug Fixes
+
+* :ambulance: fix error message structure ([98045d](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/98045ded6d1390ae6cde2cfed8a0cef244ff485f))
+* Modifying primitive validations for new validation structure ([c59d2c](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/c59d2c72e43742adf4255218a6c0bd693abb6c54))
+* New validation regex pattern for phones ([a13f38](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/a13f38aee2198a6e92c0e79074b5b265880c5ef4))
+* Removed Interfacess Repositories and change type parameter in IMessageDispatcher ([589402](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/589402c1af714c8b14ab04c60c51ed6ddabaeb65))
+
+### Styles
+
+* :rotating_light: run lint-fix ([0af970](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/0af97099ac89f1f043a049375647fac089acaba0))
+
+### Chores
+
+* :arrow_up: install missing libs ([033bf9](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/033bf964816a411a28dad67dda7855e5d9f36298))
+
+
+---
+
 ## [0.2.1](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.2.0...v0.2.1) (2023-05-26)
 
 ### Features
