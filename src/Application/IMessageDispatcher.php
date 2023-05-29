@@ -6,5 +6,5 @@ namespace Frete\Core\Application;
 
 interface IMessageDispatcher
 {
-    public function dispatch(Action $message): void;
+    public function dispatch($message): void;
 }
