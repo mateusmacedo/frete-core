@@ -8,10 +8,10 @@ use ArrayObject;
 
 class ValidatorCollectionDecorator extends Validator
 {
-    protected ArrayObject $errorMessage;
-
-    public function __construct(private Validator $validator)
-    {
+    public function __construct(
+        private Validator $validator,
+        protected ArrayObject $errorMessage = new ArrayObject()
+    ) {
     }
 
     /**
