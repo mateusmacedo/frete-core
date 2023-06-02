@@ -6,7 +6,7 @@ namespace Frete\Core\Domain\Validators;
 
 class OneOfOptionsValidator extends Validator
 {
-    private ?bool $isValid = null;
+    private bool $isValid = false;
 
     public function __construct(private array $validOptions = [])
     {

@@ -8,7 +8,7 @@ use Frete\Core\Domain\Validators\Validator;
 
 class PhoneValidator extends Validator
 {
-    private ?bool $isValid = null;
+    private bool $isValid = false;
 
     public function validate(mixed $input): bool
     {
