@@ -9,7 +9,7 @@ use Exception;
 
 class DateValidator extends Validator
 {
-    private ?bool $isValid = null;
+    private bool $isValid = false;
 
     public function validate(mixed $input): bool
     {

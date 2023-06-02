@@ -6,7 +6,7 @@ namespace Frete\Core\Domain\Validators;
 
 class GreaterThanValidator extends Validator
 {
-    private ?bool $isValid = null;
+    private bool $isValid = false;
 
     public function __construct(private int $min)
     {
