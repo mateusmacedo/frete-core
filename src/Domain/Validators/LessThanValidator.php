@@ -19,9 +19,9 @@ class LessThanValidator extends Validator
     }
 
     /**
-     * @return null|array|string
+     * @return null|string
      */
-    public function getErrorMessage(): array|string|null
+    public function getErrorMessage(): string|null
     {
         return !$this->isValid ? "The value must be numeric and less than {$this->max}" : null;
     }

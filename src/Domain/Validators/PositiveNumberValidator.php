@@ -15,9 +15,9 @@ class PositiveNumberValidator extends Validator
     }
 
     /**
-     * @return null|array|string
+     * @return null|string
      */
-    public function getErrorMessage(): array|string|null
+    public function getErrorMessage(): string|null
     {
         return !$this->isValid ? 'Not a positive number' : null;
     }
