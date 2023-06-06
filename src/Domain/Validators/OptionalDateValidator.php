@@ -7,13 +7,17 @@ namespace Frete\Core\Domain\Validators;
 use DateTime;
 use Exception;
 
-class DateValidator extends Validator
+class OptionalDateValidator extends Validator
 {
     private bool $isValid = false;
 
     public function validate(mixed $input): bool
     {
-        $this->isValid = $this->isString($input) && $this->isAValidDate($input);
+        if (null === $input) {
+            $this->isValid = true;
+            return $this->isValid;
+        }
+        $this->isValid = (new DateValidator())->validate($input);
         return $this->isValid;
     }
 

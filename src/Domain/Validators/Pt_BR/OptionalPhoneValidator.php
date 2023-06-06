@@ -6,14 +6,15 @@ namespace Frete\Core\Domain\Validators\Pt_BR;
 
 use Frete\Core\Domain\Validators\Validator;
 
-class PhoneValidator extends Validator
+class OptionalPhoneValidator extends Validator
 {
     private bool $isValid = false;
 
     public function validate(mixed $input): bool
     {
         if (empty($input)) {
-            return false;
+            $this->isValid = true;
+            return $this->isValid;
         }
 
         preg_match('/(\+[0-9]{2})?(([(][0-9]{2}[)])?([0-9]{2})?)9?[0-9]{4}-?[0-9]{4}/', $input, $matches);
