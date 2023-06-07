@@ -4,6 +4,29 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.4.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.3.0...v0.4.0) (2023-06-07)
+
+### Features
+
+* Add optional validator phone ([cb4a7b](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/cb4a7b554d8dd16ca294dfba037af4b625329196))
+* Create new validators optionals ([d6470a](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/d6470a8e835fc8880e7fe849b9bf22717e70b589))
+* Optional validators ([541e45](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/541e450849429a51ba0c26dbce65ebf674d0e5b8))
+
+### Bug Fixes
+
+* Changed access modifier in function createEvent ([e378c5](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/e378c5483ef82b446ad6b519c486c56c20078476))
+* Change value default isValid ([c2381f](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/c2381fc736b158002408c4fcf74e5f3713fce51c))
+* Init errorMessage in class constructor ([b95d5a](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/b95d5a1481d9373ee48f29091b7fb8ea2d6d85ce))
+* Remove array type from return ([bfd75a](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/bfd75aca01a56aa4fcf664c7dd4cc010833582ca))
+* Returned access modifier in function createEvent ([2adaa0](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/2adaa07e72e70cf40e012261b3baf0253beea544), [699d0e](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/699d0ece4a9f926d09c8563d51935dc7cd7357ea))
+
+### Code Refactoring
+
+* Added parameter id ([752458](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/752458ab1e7f6c0f764430c7030a11ad16b725e0))
+
+
+---
+
 ## [0.3.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.2.1...v0.3.0) (2023-05-29)
 
 ### Features
