@@ -4,6 +4,26 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.5.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.4.0...v0.5.0) (2023-06-13)
+
+### Features
+
+* Add optional validator phone ([0501b4](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/0501b47d252f24cc579a67b2d5f03384afa83eb9), [cb4a7b](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/cb4a7b554d8dd16ca294dfba037af4b625329196))
+* :boom: add new exception subclasses and change exception constructors ([cd9e1a](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/cd9e1af072ebd380221e090a156186605f0e2775))
+* Create new validators optionals ([99b2eb](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/99b2eb97e77714ac11b811ff5380e12f343b547f), [d6470a](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/d6470a8e835fc8880e7fe849b9bf22717e70b589))
+* Optional validators ([541e45](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/541e450849429a51ba0c26dbce65ebf674d0e5b8))
+
+### Bug Fixes
+
+* Added buildMessage function ([7ff2f6](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/7ff2f636a84b3654aa4cf54112489572adf20b81))
+* Changed access modifier in function createEvent ([8072c8](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/8072c8d1e2a5ee0699364a099d12c60e28d360d8), [e378c5](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/e378c5483ef82b446ad6b519c486c56c20078476))
+* Change value default isValid ([a3b9ef](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/a3b9efc0a3c63f58e471042d904c55bf8f29ddd6), [c2381f](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/c2381fc736b158002408c4fcf74e5f3713fce51c))
+* Remove array type from return ([d6f2a4](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/d6f2a4d06700364ac3533dcf75ec3003150e9dcd), [bfd75a](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/bfd75aca01a56aa4fcf664c7dd4cc010833582ca))
+* Returned access modifier in function createEvent ([67ef8f](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/67ef8f8f7ea04b7deabbea8f074561beb2216bf6), [2adaa0](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/2adaa07e72e70cf40e012261b3baf0253beea544), [699d0e](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/699d0ece4a9f926d09c8563d51935dc7cd7357ea))
+
+
+---
+
 ## [0.4.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.3.0...v0.4.0) (2023-06-07)
 
 ### Features
