@@ -32,7 +32,7 @@ abstract class CustomEnqueueOutboundChannelAdapter implements MessageHandler
         $headers = $outboundMessage->getHeaders();
         $headers[MessageHeaders::CONTENT_TYPE] = $outboundMessage->getContentType();
 
-        $messageBrokerHeaders = $this->messageBrokerHeaders?->getSchema() ?? [];
+        $messageBrokerHeaders = $this->messageBrokerHeaders->getSchema() ? $this->messageBrokerHeaders->getSchema() : [];
 
         return $this->connectionFactory->createContext()->createMessage($outboundMessage->getPayload(), $headers, $messageBrokerHeaders);
     }

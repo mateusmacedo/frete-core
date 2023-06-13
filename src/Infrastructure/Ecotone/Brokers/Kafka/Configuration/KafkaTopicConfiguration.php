@@ -12,7 +12,7 @@ final class KafkaTopicConfiguration
 	private array $consumerPartitions = [];
 
 	/**
-	 * @return
+	 * @return ?int
 	 */
 	public function getpublisherPartition(): ?int
 	{
@@ -30,7 +30,7 @@ final class KafkaTopicConfiguration
 	}
 
 	/**
-	 * @return
+	 * @return ?string
 	 */
 	public function getPublisherKey(): ?string
 	{
@@ -48,7 +48,7 @@ final class KafkaTopicConfiguration
 	}
 
 	/**
-	 * @return
+	 * @return array
 	 */
 	public function getConsumerPartitions(): array
 	{

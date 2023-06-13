@@ -12,7 +12,7 @@ class DefaultMessageHeader implements IHeaderMessage
     {
         return [
             'TraceId' => $this->generateTraceId(),
-            'Source' => getenv('APP_NAME') ?? '',
+            'Source' => getenv('APP_NAME') ? getenv('APP_NAME') : '',
             'SchemaVersion' => false != getenv('QUEUE_CUSTOM_HEADER_SCHEMA_VERSION') ? getenv('QUEUE_CUSTOM_HEADER_SCHEMA_VERSION') : '1.0',
             'Timestamp' => $this->generateTimestamp(),
             'Key' => false != getenv('QUEUE_CUSTOM_HEADER_KEY') ? getenv('QUEUE_CUSTOM_HEADER_KEY') : '',

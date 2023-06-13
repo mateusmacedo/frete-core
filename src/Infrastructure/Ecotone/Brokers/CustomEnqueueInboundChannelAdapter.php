@@ -40,11 +40,13 @@ abstract class CustomEnqueueInboundChannelAdapter extends EnqueueInboundChannelA
             }
 
             if (is_array($consumableParamsMessage)) {
+                /** @phpstan-ignore-next-line */
                 $consumer->getQueue()->setPartition($consumableParamsMessage['partition']);
+                /** @phpstan-ignore-next-line */
                 $consumer->setOffset($consumableParamsMessage['offset']);
             }
 
-            /** @var EnqueueMessage $message */
+            /** @var ?EnqueueMessage $message */
             $message = $consumer->receive($timeout ?: $this->receiveTimeoutInMilliseconds);
             if (!$message) {
                 return null;
@@ -55,6 +57,7 @@ abstract class CustomEnqueueInboundChannelAdapter extends EnqueueInboundChannelA
 
             return $convertedMessage->build();
         } catch (Exception $exception) {
+            /** @phpstan-ignore-next-line */
             if ($this->isConnectionException($exception) || ($exception->getPrevious() && $this->isConnectionException($exception->getPrevious()))) {
                 throw new ConnectionException('There was a problem while polling message channel', 0, $exception);
             }
@@ -65,6 +68,7 @@ abstract class CustomEnqueueInboundChannelAdapter extends EnqueueInboundChannelA
 
     private function isConnectionException(Exception $exception): bool
     {
+        /** @phpstan-ignore-next-line */
         return is_subclass_of($exception, $this->connectionException()) || $exception::class === $this->connectionException();
     }
 }

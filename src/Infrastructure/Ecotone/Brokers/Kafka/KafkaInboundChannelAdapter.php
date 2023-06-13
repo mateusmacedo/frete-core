@@ -11,6 +11,7 @@ use Ecotone\Messaging\Endpoint\InboundChannelAdapterEntrypoint;
 use Frete\Core\Infrastructure\Ecotone\Brokers\CustomEnqueueInboundChannelAdapter;
 use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration\KafkaTopicConfiguration;
 use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Connection\KafkaConnectionFactory;
+use GuzzleHttp\Exception\ConnectException;
 
 final class KafkaInboundChannelAdapter extends CustomEnqueueInboundChannelAdapter
 {
