@@ -8,38 +8,39 @@ use ArrayObject;
 use BackedEnum;
 use Exception;
 
-class ActionFactory implements IActionFactory
+class ActionFactory
 {
-    private ArrayObject $commandQueryEventMap;
+    private ArrayObject $map;
 
-    public function __construct(string $actionsEnumPath)
+    public function __construct(string $actionsEnum)
     {
-        $this->commandQueryEventMap = new ArrayObject();
-        $this->register($actionsEnumPath);
+        $this->map = new ArrayObject();
+        $this->register($actionsEnum);
     }
 
-    public function register(string $actionsEnumPath): void
+    public function register(string $actionsEnum): void
     {
-        if (!enum_exists($actionsEnumPath)) {
-            throw new Exception('an enum instance is expected for the action record.');
+        if (!enum_exists($actionsEnum)) {
+            throw new Exception('an enum instance is expected.');
         }
-        foreach ($actionsEnumPath::cases() as $action) {
-            $this->commandQueryEventMap->offsetSet($action->name, $action->value);
+        foreach ($actionsEnum::cases() as $message) {
+            $this->map->offsetSet($message->name, $message->value);
         }
     }
 
     public function exists(string $action): bool
     {
-        return $this->commandQueryEventMap->offsetExists($action);
+        return $this->map->offsetExists($action);
     }
 
-    public function create(string|BackedEnum $action, ?array $actionProps = null): Action
+    public function create(string|BackedEnum $action, ?array $data = null): Action
     {
         $actionName = ($action instanceof BackedEnum) ? $action->name : $action;
-        if (!$this->exists($actionName)) {
+        $actionType = $this->map->offsetGet($actionName);
+        if (!$actionType) {
             throw new Exception("there is no {$actionName} action on the enum");
         }
-        $actionInstance = $this->commandQueryEventMap->offsetGet($actionName);
-        return null != $actionProps ? new $actionInstance(...$actionProps) : new $actionInstance();
+
+        return null != $data ? new $actionType(...$data) : new $actionType();
     }
 }
