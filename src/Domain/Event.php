@@ -6,7 +6,7 @@ namespace Frete\Core\Domain;
 
 use DateTimeImmutable;
 
-abstract class DomainEvent
+abstract class Event
 {
     public function __construct(
         public readonly string|int $identifier,

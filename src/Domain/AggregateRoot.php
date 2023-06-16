@@ -4,35 +4,42 @@ declare(strict_types=1);
 
 namespace Frete\Core\Domain;
 
-abstract class AggregateRoot extends Entity
+use ArrayObject;
+
+abstract class AggregateRoot extends Entity implements EventStore
 {
-    private BaseArrayObject $domainEvents;
+    private ArrayObject $eventsToCommit;
+    private ArrayObject $eventsCommited;
 
     public function __construct(string $id)
     {
         parent::__construct($id);
-        $this->clearEvents();
+        $this->eventsToCommit = new ArrayObject();
+        $this->eventsCommited = new ArrayObject();
     }
 
-    public function clearEvents(): void
+    private function generateKeyOffset(Event $event): string
     {
-        $this->domainEvents = new BaseArrayObject();
+        return md5(serialize($event));
+    }
+
+    public function addEvent(Event $event): void
+    {
+        $this->eventsToCommit->offsetSet($this->generateKeyOffset($event), $event);
     }
 
     public function getEvents(): array
     {
-        return $this->domainEvents->getArrayCopy();
+        return $this->eventsToCommit->getArrayCopy();
     }
 
-    protected function addEvent(DomainEvent $event)
+    public function commitEvent(Event $event): void
     {
-        $this->domainEvents->append($event);
-    }
-
-    protected function createEvent(string $domainEventReferenceName, array $data = []): void
-    {
-        $params = [$this->id, $data];
-        $evento = new ($domainEventReferenceName)(...$params);
-        $this->addEvent($evento);
+        $key = $this->generateKeyOffset($event);
+        $event = $this->eventsToCommit->offsetGet($key);
+        if ($event) {
+            $this->eventsCommited->offsetSet($key, $event);
+            $this->eventsToCommit->offsetUnset($key);
+        }
     }
 }

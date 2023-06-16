@@ -28,19 +28,4 @@ class OptionalDateValidator extends Validator
     {
         return !$this->isValid ? 'Invalid date format' : null;
     }
-
-    private function isString(mixed $input): bool
-    {
-        return is_string($input);
-    }
-
-    private function isAValidDate($date)
-    {
-        try {
-            $date = new DateTime($date);
-            return true;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
 }
