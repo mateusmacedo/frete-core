@@ -4,6 +4,29 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.6.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.5.0...v0.6.0) (2023-06-15)
+
+### Features
+
+* :sparkles: add class event store to allow storing and retrieving domain events ([4ff031](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/4ff0311d4b69612b050405c1bd1993884daed84f))
+
+### Code Refactoring
+
+* :fire: remove wip tests ([08fef1](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/08fef1397b44fffa5edafde6b40594bab4c3c461))
+* :recycle: application contracts ([570544](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/570544fc6997b27e1b4d0c27763c0cc275cf70e4))
+
+### Tests
+
+* :white_check_mark: add unit test for Application classes ([ad7d4d](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/ad7d4d6612716a7caf681113aa1c1cc74010042b))
+* :white_check_mark: add unit tests for domain classes. ([b68139](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/b681391a94ee54943adbae7faf1c52cf9e06de56))
+
+### Chores
+
+* :arrow_up: update deps ([5c2559](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/5c25595ee28e478dfa9c07e11951ce0760d8a9b3))
+
+
+---
+
 ## [0.5.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.4.0...v0.5.0) (2023-06-13)
 
 ### Features

@@ -19,13 +19,6 @@
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^10.1"
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Ecotone\\Laravel\\EcotoneProvider"
-            ]
-        }
-    },
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -74,5 +67,5 @@
         "release:minor": "conventional-changelog --minor --commit",
         "release:major": "conventional-changelog --major --commit"
     },
-    "version": "0.5.0"
+    "version": "0.6.0"
 }
