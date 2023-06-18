@@ -36,12 +36,12 @@ final class KafkaOutboundChannelAdapter extends CustomEnqueueOutboundChannelAdap
         $props = $message->getProperties();
 
         if (isset($props['partition']) && is_int($props['partition'])) {
-            /** @phpstan-ignore-next-line */
+            // @phpstan-ignore-next-line
             $message->setPartition($props['partition']);
         }
 
         if (isset($props['key']) && is_int($props['key'])) {
-            /** @phpstan-ignore-next-line */
+            // @phpstan-ignore-next-line
             $message->setKey($props['key']);
         }
 

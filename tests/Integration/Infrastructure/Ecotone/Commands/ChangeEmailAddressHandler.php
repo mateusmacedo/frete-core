@@ -10,7 +10,7 @@ use Frete\Core\Application\Command;
 class ChangeEmailAddressHandler implements Command
 {
     #[CommandHandler]
-    public function handle(ChangeEmailAddressCommand $command) : void
+    public function handle(ChangeEmailAddressCommand $command): void
     {
         // retrieve user and change the email
     }

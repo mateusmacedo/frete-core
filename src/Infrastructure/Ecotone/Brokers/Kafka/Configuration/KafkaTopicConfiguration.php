@@ -6,62 +6,40 @@ namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration;
 
 final class KafkaTopicConfiguration
 {
-	private ?int $publisherPartition = null;
-	private ?string $publisherKey = null;
+    private ?int $publisherPartition = null;
+    private ?string $publisherKey = null;
+    private array $consumerPartitions = [];
 
-	private array $consumerPartitions = [];
+    public function getpublisherPartition(): ?int
+    {
+        return $this->publisherPartition;
+    }
 
-	/**
-	 * @return ?int
-	 */
-	public function getpublisherPartition(): ?int
-	{
-		return $this->publisherPartition;
-	}
+    public function setpublisherPartition(int $publisherPartition): self
+    {
+        $this->publisherPartition = $publisherPartition;
+        return $this;
+    }
 
-	/**
-	 * @param  $publisherPartition
-	 * @return self
-	 */
-	public function setpublisherPartition(int $publisherPartition): self
-	{
-		$this->publisherPartition = $publisherPartition;
-		return $this;
-	}
+    public function getPublisherKey(): ?string
+    {
+        return $this->publisherKey;
+    }
 
-	/**
-	 * @return ?string
-	 */
-	public function getPublisherKey(): ?string
-	{
-		return $this->publisherKey;
-	}
+    public function setpublisherKey(string $publisherKey): self
+    {
+        $this->publisherKey = $publisherKey;
+        return $this;
+    }
 
-	/**
-	 * @param  $publisherKey
-	 * @return self
-	 */
-	public function setpublisherKey(string $publisherKey): self
-	{
-		$this->publisherKey = $publisherKey;
-		return $this;
-	}
+    public function getConsumerPartitions(): array
+    {
+        return $this->consumerPartitions;
+    }
 
-	/**
-	 * @return array
-	 */
-	public function getConsumerPartitions(): array
-	{
-		return $this->consumerPartitions;
-	}
-
-	/**
-	 * @param  $consumerPartitions
-	 * @return self
-	 */
-	public function setConsumerPartitions(array $consumerPartitions): self
-	{
-		$this->consumerPartitions = $consumerPartitions;
-		return $this;
-	}
+    public function setConsumerPartitions(array $consumerPartitions): self
+    {
+        $this->consumerPartitions = $consumerPartitions;
+        return $this;
+    }
 }

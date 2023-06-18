@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Connection;
 
 use Enqueue\RdKafka\RdKafkaConnectionFactory;
-use RdKafka\Conf;
-use RdKafka\KafkaConsumer;
-use RdKafka\TopicPartition;
+use RdKafka\{Conf, KafkaConsumer, TopicPartition};
 
 class KafkaConnectionFactory extends RdKafkaConnectionFactory
 {
     private ?Conf $config = null;
     private ?KafkaConsumer $consumer = null;
+
     public function __construct(?array $config = [])
     {
         parent::__construct($config);

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka;
 
-use Ecotone\Enqueue\CachedConnectionFactory;
-use Ecotone\Enqueue\HttpReconnectableConnectionFactory;
-use Ecotone\Enqueue\InboundMessageConverter;
+use Ecotone\Enqueue\{CachedConnectionFactory, HttpReconnectableConnectionFactory, InboundMessageConverter};
 use Ecotone\Messaging\Endpoint\InboundChannelAdapterEntrypoint;
 use Frete\Core\Infrastructure\Ecotone\Brokers\CustomEnqueueInboundChannelAdapter;
 use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration\KafkaTopicConfiguration;
@@ -16,6 +14,7 @@ use GuzzleHttp\Exception\ConnectException;
 final class KafkaInboundChannelAdapter extends CustomEnqueueInboundChannelAdapter
 {
     private $connection;
+
     public function __construct(
         KafkaConnectionFactory $connectionFactory,
         InboundChannelAdapterEntrypoint $entrypointGateway,
@@ -35,6 +34,7 @@ final class KafkaInboundChannelAdapter extends CustomEnqueueInboundChannelAdapte
             $inboundMessageConverter,
         );
     }
+
     public function initialize(): void
     {
         $context = $this->connectionFactory->createContext();
@@ -48,26 +48,29 @@ final class KafkaInboundChannelAdapter extends CustomEnqueueInboundChannelAdapte
 
     protected function getMessageParamsConsume(): array|bool
     {
-        if (!$this->topicConfig || empty($this->topicConfig->getConsumerPartitions()))
+        if (!$this->topicConfig || empty($this->topicConfig->getConsumerPartitions())) {
             return true;
+        }
 
         $kafkaConsumer = $this->connection->getConsumer('false');
         $topicPartitions = array_map(
-            fn($val) => $this->connection->createTopicPartition($this->queueName, $val), $this->topicConfig->getConsumerPartitions()
+            fn ($val) => $this->connection->createTopicPartition($this->queueName, $val),
+            $this->topicConfig->getConsumerPartitions()
         );
 
         $commitedOfssets = array_map(function ($val) {
-            if ($val->getOffset() == -1001)
+            if (-1001 == $val->getOffset()) {
                 $val->setOffset(0);
+            }
             return $val;
         }, $kafkaConsumer->getCommittedOffsets($topicPartitions, 2000));
 
         $kafkaConsumer->assign($commitedOfssets);
         $consumedMessage = $kafkaConsumer->consume(2000);
-        if ($consumedMessage->err != 0)
+        if (0 != $consumedMessage->err) {
             return false;
+        }
 
         return ['offset' => $consumedMessage->offset, 'partition' => $consumedMessage->partition];
     }
-
 }

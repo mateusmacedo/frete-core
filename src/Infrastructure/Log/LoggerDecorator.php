@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Frete\Core\Infrastructure\Log;
 
 use Attribute;
-use Frete\Shared\Decorator;
+use Frete\Core\Shared\Decorator;
 use Psr\Log\LoggerInterface;
 
 #[Attribute(Attribute::TARGET_METHOD)]

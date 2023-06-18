@@ -31,7 +31,6 @@ final class KafkaMessagePublisherModule extends NoExternalConfigurationModule im
         /** @var KafkaMessagePublisherConfiguration $messagePublisher */
         foreach (ExtensionObjectResolver::resolve(KafkaMessagePublisherConfiguration::class, $extensionObjects) as $messagePublisher) {
             $mediaType = $messagePublisher->getOutputDefaultConversionMediaType() ?: $serviceConfiguration->getDefaultSerializationMediaType();
-
             $messagingConfiguration
                 ->registerGatewayBuilder(
                     GatewayProxyBuilder::create($messagePublisher->getReferenceName(), MessagePublisher::class, 'send', $messagePublisher->getReferenceName())
@@ -64,7 +63,7 @@ final class KafkaMessagePublisherModule extends NoExternalConfigurationModule im
                         ])
                 )
                 ->registerMessageHandler(
-                    KafkaOutboundChannelAdapterBuilder::create($messagePublisher->getQueueName(), $messagePublisher->getConnectionReference())
+                    KafkaOutboundChannelAdapterBuilder::create($messagePublisher->getQueueName(), $messagePublisher->getConnectionReference(), $messagePublisher->getmessageBrokerHeadersReferenceName(), $messagePublisher->getKafkaTopicConfiguration())
                         ->withEndpointId($messagePublisher->getReferenceName() . '.handler')
                         ->withInputChannelName($messagePublisher->getReferenceName())
                         ->withAutoDeclareOnSend($messagePublisher->isAutoDeclareOnSend())

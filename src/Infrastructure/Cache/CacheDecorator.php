@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Frete\Core\Infrastructure\Cache;
 
 use Attribute;
-use Frete\Shared\Decorator;
+use Frete\Core\Shared\Decorator;
 use Psr\Cache\CacheItemPoolInterface;
 
 #[Attribute(Attribute::TARGET_METHOD)]

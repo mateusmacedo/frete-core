@@ -25,7 +25,7 @@ final class CustomSqsOutboundChannelAdapter extends CustomEnqueueOutboundChannel
     public function initialize(): void
     {
         $context = $this->connectionFactory->createContext();
-        /** @phpstan-ignore-next-line */
+        // @phpstan-ignore-next-line
         $context->declareQueue($context->createQueue($this->queueName));
     }
 }

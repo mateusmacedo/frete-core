@@ -5,20 +5,21 @@ declare(strict_types=1);
 namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration;
 
 use Ecotone\Messaging\MessagePublisher;
-use Enqueue\RdKafka\RdKafkaConnectionFactory;
+use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Connection\KafkaConnectionFactory;
+use Frete\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\DefaultMessageHeader;
 
 final class KafkaMessagePublisherConfiguration
 {
     private bool $autoDeclareOnSend = true;
     private string $headerMapper = '';
 
-    private function __construct(private string $connectionReference, private string $queueName, private ?string $outputDefaultConversionMediaType, private string $referenceName)
+    private function __construct(private string $connectionReference, private string $queueName, private ?string $outputDefaultConversionMediaType, private string $referenceName, private string $messageBrokerHeadersReferenceName, private ?KafkaTopicConfiguration $topicConfig)
     {
     }
 
-    public static function create(string $publisherReferenceName = MessagePublisher::class, string $queueName = '', ?string $outputDefaultConversionMediaType = null, string $connectionReference = RdKafkaConnectionFactory::class): self
+    public static function create(string $publisherReferenceName = MessagePublisher::class, string $queueName = '', ?string $outputDefaultConversionMediaType = null, string $connectionReference = KafkaConnectionFactory::class, string $messageBrokerHeadersReferenceName = DefaultMessageHeader::class, ?KafkaTopicConfiguration $topicConfig = null): self
     {
-        return new self($connectionReference, $queueName, $outputDefaultConversionMediaType, $publisherReferenceName);
+        return new self($connectionReference, $queueName, $outputDefaultConversionMediaType, $publisherReferenceName, $messageBrokerHeadersReferenceName, $topicConfig);
     }
 
     public function getConnectionReference(): string
@@ -67,5 +68,15 @@ final class KafkaMessagePublisherConfiguration
     public function getReferenceName(): string
     {
         return $this->referenceName;
+    }
+
+    public function getKafkaTopicConfiguration(): ?KafkaTopicConfiguration
+    {
+        return $this->topicConfig;
+    }
+
+    public function getmessageBrokerHeadersReferenceName(): string
+    {
+        return $this->messageBrokerHeadersReferenceName;
     }
 }

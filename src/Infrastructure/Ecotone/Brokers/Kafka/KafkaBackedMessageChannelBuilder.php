@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Frete\Core\Infrastructure\Ecotone\Brokers\Kafka;
 
 use Ecotone\Enqueue\EnqueueMessageChannelBuilder;
-use Enqueue\RdKafka\RdKafkaConnectionFactory;
 use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Configuration\KafkaTopicConfiguration;
 use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\Connection\KafkaConnectionFactory;
 use Frete\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\DefaultMessageHeader;
