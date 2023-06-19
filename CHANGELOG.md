@@ -4,6 +4,38 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.7.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.6.0...v0.7.0) (2023-06-19)
+
+### Features
+
+* Added publish to third application message ([226326](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/2263269988fdd0c585cfaa82e026896ca8d25701))
+* :boom: add new exception subclasses and change exception constructors ([641162](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/641162ba5d35bbb5d69830fcbb4107250b004ca4), [cd9e1a](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/cd9e1af072ebd380221e090a156186605f0e2775))
+* :sparkles: add class event store to allow storing and retrieving domain events ([f8c351](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/f8c3511fc74242f235479dd6ddf1623d5724005b), [4ff031](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/4ff0311d4b69612b050405c1bd1993884daed84f))
+
+### Bug Fixes
+
+* Adjusted media converters not found error ([6a8fe7](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/6a8fe77573d9312d47e639eeccc25e79ed36bb0e))
+
+### Code Refactoring
+
+* :coffin: remove unused interface and classes ([a6ef23](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/a6ef2379f52924e7608248333f3a48eb0c7195fd))
+* :fire: remove wip tests ([6f13c9](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/6f13c9080c0910d5c8da95dfc33b64102817dbae), [08fef1](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/08fef1397b44fffa5edafde6b40594bab4c3c461))
+* :recycle: application contracts ([13306e](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/13306ed260f3cdd4ac2b81cff029e1674c758b16), [570544](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/570544fc6997b27e1b4d0c27763c0cc275cf70e4))
+* :recycle: refactor and rename ([420279](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/420279388cb542ad09503323df83af737a79f984))
+
+### Tests
+
+* :white_check_mark: add unit test for Application classes ([897cf7](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/897cf723635201262c02179743cffbeadd969797), [ad7d4d](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/ad7d4d6612716a7caf681113aa1c1cc74010042b))
+* :white_check_mark: add unit tests for domain classes. ([019784](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/01978472d1b9f56065a8ca747ba6b9968062fa1f), [b68139](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/b681391a94ee54943adbae7faf1c52cf9e06de56))
+
+### Chores
+
+* :arrow_up: update deps ([a9ace9](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/a9ace91d486308a0de76d0f49d5dc15ed66a34f0), [4103ae](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/4103ae7c62cf6c6e675c26e77b9db3291d1d5fc2), [5c2559](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/5c25595ee28e478dfa9c07e11951ce0760d8a9b3))
+* :heavy_minus_sign: remove unnecessary dependency ([66ff27](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/66ff2714d2402a2474cd6f284c506326151d7778))
+
+
+---
+
 ## [0.6.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.5.0...v0.6.0) (2023-06-15)
 
 ### Features
