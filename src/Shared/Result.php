@@ -27,6 +27,11 @@ class Result
         return $this->isSuccess;
     }
 
+    public function isFailure(): bool
+    {
+        return !$this->isSuccess;
+    }
+
     public function getValue()
     {
         return $this->value;
