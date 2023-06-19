@@ -29,6 +29,7 @@ class KafkaDistribuitedBusConfiguration
     private string $distributionType;
     private string $messageBrokerHeadersReferenceName;
     private ?KafkaTopicConfiguration $topicConfig;
+    private bool $autoDeclareOnSend = true;
     private string $topicName;
 
     private function __construct(string $topicName, string $kafkaConnectionReference, ?string $outputDefaultConversionMediaType, string $referenceName, string $distributionType, string $messageBrokerHeadersReferenceName, ?KafkaTopicConfiguration $topicConfig)
@@ -140,5 +141,17 @@ class KafkaDistribuitedBusConfiguration
     public function getQueueName(): string
     {
         return $this->topicName;
+    }
+
+    public function isAutoDeclareOnSend(): bool
+    {
+        return $this->autoDeclareOnSend;
+    }
+
+    public function withAutoDeclareQueueOnSend(bool $autoDeclareQueueOnSend): self
+    {
+        $this->autoDeclareOnSend = $autoDeclareQueueOnSend;
+
+        return $this;
     }
 }
