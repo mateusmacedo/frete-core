@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Frete\Core\Shared;
 
-interface IMapper
+interface Mapper
 {
     public function toDomain($rawData): mixed;
 
