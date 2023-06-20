@@ -21,6 +21,7 @@ class KafkaDistribuitedBusConfiguration
     private const DISTRIBUTION_TYPE_CONSUMER = 'consumer';
     private const DISTRIBUTION_TYPE_BOTH = 'both';
 
+    private bool $autoDeclareOnSend = true;
     private string $connectionReference;
     private ?string $outputDefaultConversionMediaType;
     private string $referenceName;
@@ -29,7 +30,6 @@ class KafkaDistribuitedBusConfiguration
     private string $distributionType;
     private string $messageBrokerHeadersReferenceName;
     private ?KafkaTopicConfiguration $topicConfig;
-    private bool $autoDeclareOnSend = true;
     private string $topicName;
 
     private function __construct(string $topicName, string $kafkaConnectionReference, ?string $outputDefaultConversionMediaType, string $referenceName, string $distributionType, string $messageBrokerHeadersReferenceName, ?KafkaTopicConfiguration $topicConfig)

@@ -29,7 +29,8 @@ final class KafkaMessageConsumerModule extends NoExternalConfigurationModule imp
                     $extensionObject->getEndpointId(),
                     $extensionObject->getQueueName(),
                     $extensionObject->getEndpointId(),
-                    $extensionObject->getConnectionReferenceName()
+                    $extensionObject->getConnectionReferenceName(),
+                    $extensionObject->getKafkaTopicConfiguration()
                 )
                     ->withDeclareOnStartup($extensionObject->isDeclaredOnStartup())
                     ->withHeaderMapper($extensionObject->getHeaderMapper())

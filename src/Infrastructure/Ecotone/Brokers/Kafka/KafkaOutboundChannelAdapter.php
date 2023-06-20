@@ -32,19 +32,18 @@ final class KafkaOutboundChannelAdapter extends CustomEnqueueOutboundChannelAdap
 
     public function buildMessage(Message $message): buildMessageReturn
     {
-        $message = parent::buildMessage($message);
-        $props = $message->getProperties();
+        /** @var \Enqueue\RdKafka\RdKafkaMessage */
+        $kafkaMessage = parent::buildMessage($message);
+        $props = $kafkaMessage->getProperties();
 
         if (isset($props['partition']) && is_int($props['partition'])) {
-            // @phpstan-ignore-next-line
-            $message->setPartition($props['partition']);
+            $kafkaMessage->setPartition($props['partition']);
         }
 
         if (isset($props['key']) && is_int($props['key'])) {
-            // @phpstan-ignore-next-line
-            $message->setKey($props['key']);
+            $kafkaMessage->setKey((string)$props['key']);
         }
 
-        return $message;
+        return $kafkaMessage;
     }
 }

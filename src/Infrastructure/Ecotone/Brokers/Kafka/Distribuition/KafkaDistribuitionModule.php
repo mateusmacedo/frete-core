@@ -24,6 +24,7 @@ use Frete\Core\Infrastructure\Ecotone\Brokers\Kafka\{KafkaBackedMessageChannelBu
 #[ModuleAnnotation]
 class KafkaDistribuitionModule extends NoExternalConfigurationModule implements AnnotationModule
 {
+    public const CHANNEL_PREFIX = 'distributed_';
     // @phpstan-ignore-next-line
     private array $distributedEventHandlers;
     // @phpstan-ignore-next-line
@@ -67,9 +68,8 @@ class KafkaDistribuitionModule extends NoExternalConfigurationModule implements 
 
             if ($distributedBusConfiguration->isConsumer()) {
                 Assert::isFalse(ServiceConfiguration::DEFAULT_SERVICE_NAME === $applicationConfiguration->getServiceName(), "Service name can't be default when using distribution. Set up correct Service Name");
-
-                $channelName = $applicationConfiguration->getServiceName();
-                $configuration->registerMessageChannel(KafkaBackedMessageChannelBuilder::create($channelName, $distributedBusConfiguration->getConnectionReference()));
+                $channelName = self::CHANNEL_PREFIX . $applicationConfiguration->getServiceName();
+                $configuration->registerMessageChannel(KafkaBackedMessageChannelBuilder::create($distributedBusConfiguration->getQueueName(), $distributedBusConfiguration->getConnectionReference(), $distributedBusConfiguration->getmessageBrokerHeadersReferenceName(), $distributedBusConfiguration->getKafkaTopicConfiguration()));
                 $configuration->registerMessageHandler(
                     TransformerBuilder::createHeaderEnricher([
                         MessageHeaders::ROUTING_SLIP => DistributionEntrypoint::DISTRIBUTED_CHANNEL,
@@ -96,7 +96,7 @@ class KafkaDistribuitionModule extends NoExternalConfigurationModule implements 
     private function registerPublisher(KafkaDistribuitedBusConfiguration|KafkaMessagePublisherConfiguration $messagePublisher, ServiceConfiguration $applicationConfiguration, Configuration $configuration): void
     {
         $mediaType = $messagePublisher->getOutputDefaultConversionMediaType() ? $messagePublisher->getOutputDefaultConversionMediaType() : $applicationConfiguration->getDefaultSerializationMediaType();
-
+        $channelName = self::CHANNEL_PREFIX . $applicationConfiguration->getServiceName();
         $configuration
             ->registerGatewayBuilder(
                 GatewayProxyBuilder::create($messagePublisher->getReferenceName(), DistributedBus::class, 'sendCommand', $messagePublisher->getReferenceName())
@@ -151,6 +151,7 @@ class KafkaDistribuitionModule extends NoExternalConfigurationModule implements 
                     ->withAutoDeclareOnSend($messagePublisher->isAutoDeclareOnSend())
                     ->withHeaderMapper($messagePublisher->getHeaderMapper())
                     ->withDefaultConversionMediaType($mediaType)
+                    ->withStaticHeadersToEnrich([MessageHeaders::POLLED_CHANNEL_NAME => $channelName])
             )
             ->registerGatewayBuilder(
                 GatewayProxyBuilder::create($messagePublisher->getReferenceName(), DistributedBus::class, 'sendMessage', $messagePublisher->getReferenceName())

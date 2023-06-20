@@ -15,6 +15,8 @@ use Frete\Core\Infrastructure\Ecotone\Brokers\MessageBrokerHeaders\DefaultMessag
 
 class KafkaOutboundChannelAdapterBuilder extends EnqueueOutboundChannelAdapterBuilder
 {
+    private array $staticHeadersToAdd = [];
+
     private function __construct(private string $topicName, private string $connectionFactoryReferenceName, private string $messageBrokerHeadersReferenceName, private ?KafkaTopicConfiguration $topicConfig)
     {
         $this->initialize($connectionFactoryReferenceName);
@@ -41,9 +43,16 @@ class KafkaOutboundChannelAdapterBuilder extends EnqueueOutboundChannelAdapterBu
             CachedConnectionFactory::createFor(new HttpReconnectableConnectionFactory($connectionFactory)),
             $this->buildKafkaTopic($this->topicName, $this->topicConfig),
             $this->autoDeclare,
-            new OutboundMessageConverter($headerMapper, $conversionService, $this->defaultConversionMediaType, $this->defaultDeliveryDelay, $this->defaultTimeToLive, $this->defaultPriority, []),
+            new OutboundMessageConverter($headerMapper, $conversionService, $this->defaultConversionMediaType, $this->defaultDeliveryDelay, $this->defaultTimeToLive, $this->defaultPriority, $this->staticHeadersToAdd),
             $messageBrokerHeadersReferenceName
         );
+    }
+
+    public function withStaticHeadersToEnrich(array $headers): self
+    {
+        $this->staticHeadersToAdd = $headers;
+
+        return $this;
     }
 
     private function buildKafkaTopic(string $topicName, KafkaTopicConfiguration $topicConfig): RdKafkaTopic
