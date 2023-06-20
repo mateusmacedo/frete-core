@@ -9,5 +9,5 @@ use Frete\Core\Shared\Result;
 
 interface Dispatcher
 {
-    public function dispatch(Action|Event $message): Result;
+    public function dispatch(Action|Event $message): void;
 }
