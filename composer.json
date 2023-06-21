@@ -68,6 +68,7 @@
         "ecotone/enqueue": "^1.88",
         "ecotone/laravel": "^1.88",
         "ecotone/redis": "^1.88",
+        "ecotone/jms-converter": "^1.82",
         "ecotone/sqs": "^1.88",
         "enqueue/enqueue": "^0.10.18",
         "enqueue/rdkafka": "^0.10.18",
