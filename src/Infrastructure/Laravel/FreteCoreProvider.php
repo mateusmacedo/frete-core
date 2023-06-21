@@ -6,7 +6,7 @@ namespace Frete\Core\Infrastructure\Laravel;
 
 use Frete\Core\Application\Dispatcher;
 use Frete\Core\Infrastructure\Ecotone\Converters\{JsonToPhpConverter, PhpToJsonConverter};
-use Frete\Core\Infrastructure\Ecotone\EcotoneMessageDispatcher;
+use Frete\Core\Infrastructure\Ecotone\Dispatcher\DispatcherBus;
 use Illuminate\Support\ServiceProvider;
 
 class FreteCoreProvider extends ServiceProvider
@@ -20,7 +20,7 @@ class FreteCoreProvider extends ServiceProvider
         // @phpstan-ignore-next-line
         $this->app->singleton(PhpToJsonConverter::class, PhpToJsonConverter::class);
         // @phpstan-ignore-next-line
-        $this->app->bind(Dispatcher::class, EcotoneMessageDispatcher::class);
+        $this->app->bind(Dispatcher::class, DispatcherBus::class);
     }
 
     public function boot()

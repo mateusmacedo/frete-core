@@ -31,8 +31,9 @@ class KafkaDistribuitedBusConfiguration
     private string $messageBrokerHeadersReferenceName;
     private ?KafkaTopicConfiguration $topicConfig;
     private string $topicName;
+    private ?string $endpointId = null;
 
-    private function __construct(string $topicName, string $kafkaConnectionReference, ?string $outputDefaultConversionMediaType, string $referenceName, string $distributionType, string $messageBrokerHeadersReferenceName, ?KafkaTopicConfiguration $topicConfig)
+    private function __construct(string $topicName, ?string $endpointId, string $kafkaConnectionReference, ?string $outputDefaultConversionMediaType, string $referenceName, string $distributionType, string $messageBrokerHeadersReferenceName, ?KafkaTopicConfiguration $topicConfig)
     {
         $this->connectionReference = $kafkaConnectionReference;
         $this->outputDefaultConversionMediaType = $outputDefaultConversionMediaType;
@@ -41,16 +42,17 @@ class KafkaDistribuitedBusConfiguration
         $this->messageBrokerHeadersReferenceName = $messageBrokerHeadersReferenceName;
         $this->topicConfig = $topicConfig;
         $this->topicName = $topicName;
+        $this->endpointId = $endpointId;
     }
 
     public static function createPublisher(string $topicName, string $busReferenceName = DistributedBus::class, ?string $outputDefaultConversionMediaType = null, string $kafkaConnectionReference = KafkaConnectionFactory::class, string $messageBrokerHeadersReferenceName = DefaultMessageHeader::class, ?KafkaTopicConfiguration $topicConfig = null): self
     {
-        return new self($topicName, $kafkaConnectionReference, $outputDefaultConversionMediaType, $busReferenceName, self::DISTRIBUTION_TYPE_PUBLISHER, $messageBrokerHeadersReferenceName, $topicConfig);
+        return new self($topicName, null, $kafkaConnectionReference, $outputDefaultConversionMediaType, $busReferenceName, self::DISTRIBUTION_TYPE_PUBLISHER, $messageBrokerHeadersReferenceName, $topicConfig);
     }
 
-    public static function createConsumer(string $topicName, string $kafkaConnectionReference = KafkaConnectionFactory::class, string $messageBrokerHeadersReferenceName = DefaultMessageHeader::class, ?KafkaTopicConfiguration $topicConfig = null): self
+    public static function createConsumer(string $topicName, string $endpointId, string $kafkaConnectionReference = KafkaConnectionFactory::class, string $messageBrokerHeadersReferenceName = DefaultMessageHeader::class, ?KafkaTopicConfiguration $topicConfig = null): self
     {
-        return new self($topicName, $kafkaConnectionReference, null, '', self::DISTRIBUTION_TYPE_CONSUMER, $messageBrokerHeadersReferenceName, $topicConfig);
+        return new self($topicName, $endpointId, $kafkaConnectionReference, null, '', self::DISTRIBUTION_TYPE_CONSUMER, $messageBrokerHeadersReferenceName, $topicConfig);
     }
 
     public function isPublisher(): bool
@@ -153,5 +155,10 @@ class KafkaDistribuitedBusConfiguration
         $this->autoDeclareOnSend = $autoDeclareQueueOnSend;
 
         return $this;
+    }
+
+    public function getEndpointId(): string
+    {
+        return $this->endpointId;
     }
 }

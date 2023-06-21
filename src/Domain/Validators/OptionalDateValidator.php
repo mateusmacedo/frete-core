@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Frete\Core\Domain\Validators;
 
-use DateTime;
-use Exception;
-
 class OptionalDateValidator extends Validator
 {
     private bool $isValid = false;

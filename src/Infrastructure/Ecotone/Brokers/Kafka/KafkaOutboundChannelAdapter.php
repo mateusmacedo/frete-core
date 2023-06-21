@@ -41,7 +41,7 @@ final class KafkaOutboundChannelAdapter extends CustomEnqueueOutboundChannelAdap
         }
 
         if (isset($props['key']) && is_int($props['key'])) {
-            $kafkaMessage->setKey((string)$props['key']);
+            $kafkaMessage->setKey((string) $props['key']);
         }
 
         return $kafkaMessage;

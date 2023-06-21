@@ -18,11 +18,6 @@ abstract class AggregateRoot extends Entity implements EventStore
         $this->eventsCommited = new ArrayObject();
     }
 
-    private function generateKeyOffset(Event $event): string
-    {
-        return md5(serialize($event));
-    }
-
     public function addEvent(Event $event): void
     {
         $this->eventsToCommit->offsetSet($this->generateKeyOffset($event), $event);
@@ -41,5 +36,10 @@ abstract class AggregateRoot extends Entity implements EventStore
             $this->eventsCommited->offsetSet($key, $event);
             $this->eventsToCommit->offsetUnset($key);
         }
+    }
+
+    private function generateKeyOffset(Event $event): string
+    {
+        return md5(serialize($event));
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Domain\Errors;
 
 use Frete\Core\Domain\Errors\DomainError;
+use RuntimeException;
 use Tests\TestCase;
 
 class DomainErrorTest extends TestCase
@@ -25,7 +26,7 @@ class DomainErrorTest extends TestCase
 
     public function testDomainErrorHasProperPreviousException()
     {
-        $previous = new \RuntimeException('Previous Exception');
+        $previous = new RuntimeException('Previous Exception');
         $error = new DomainError('Test error message', 0, $previous);
         $this->assertSame($previous, $error->getPrevious());
     }

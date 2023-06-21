@@ -12,7 +12,7 @@ final class KafkaMessageConsumerConfiguration extends EnqueueMessageConsumerConf
 {
     private bool $declareOnStartup = KafkaInboundChannelAdapterBuilder::DECLARE_ON_STARTUP_DEFAULT;
 
-    public function __construct(string $endpointId, string $queueName, string $kafkaConnectionReferenceName = KafkaConnectionFactory::class, private ?KafkaTopicConfiguration $topicConfig=null)
+    public function __construct(string $endpointId, string $queueName, string $kafkaConnectionReferenceName = KafkaConnectionFactory::class, private ?KafkaTopicConfiguration $topicConfig = null)
     {
         parent::__construct($endpointId, $queueName, $kafkaConnectionReferenceName);
     }

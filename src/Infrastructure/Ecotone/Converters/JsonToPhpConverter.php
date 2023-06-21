@@ -26,10 +26,6 @@ class JsonToPhpConverter implements Converter
             return $data;
         }
 
-        if (!class_exists($commandType = $targetType->getTypeHint())) {
-            return new $commandType(...$data);
-        }
-
         return json_decode(json_encode($data), false);
     }
 }

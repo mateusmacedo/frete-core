@@ -4,13 +4,9 @@ declare(strict_types=1);
 
 namespace Frete\Core\Infrastructure\Ecotone\Dispatcher;
 
-use Ecotone\Modelling\CommandBus;
-use Ecotone\Modelling\EventBus;
-use Ecotone\Modelling\QueryBus;
-use Frete\Core\Application\Action;
-use Frete\Core\Application\Command;
-use Frete\Core\Application\Dispatcher;
-use Frete\Core\Application\Query;
+use Ecotone\Messaging\MessagePublisher;
+use Ecotone\Modelling\{CommandBus, QueryBus};
+use Frete\Core\Application\{Action, Command, Dispatcher, Query};
 use Frete\Core\Domain\Event;
 use Frete\Core\Infrastructure\Errors\InfrastructureError;
 use Frete\Core\Shared\Result;
@@ -21,13 +17,13 @@ class DispatcherBus implements Dispatcher
     public function __construct(
         private readonly CommandBus $commandBus,
         private readonly QueryBus $queryBus,
-        private readonly EventBus $eventBus
+        private readonly MessagePublisher $eventBus
     ) {
     }
 
-    public function dispatch(Action|Event $message): Result
+    public function dispatch(Action|Event $message, array $messageMetadata = []): Result
     {
-        try{
+        try {
             if ($message instanceof Command) {
                 return $this->commandBus->send($message);
             }
@@ -37,13 +33,12 @@ class DispatcherBus implements Dispatcher
             }
 
             if ($message instanceof Event) {
-                $this->eventBus->publish($message);
+                $this->eventBus->convertAndSendWithMetadata($message, metadata: $messageMetadata);
                 return Result::success(true);
             }
         } catch (Throwable $e) {
             return Result::failure(new InfrastructureError($e->getMessage()));
         }
-
 
         return Result::failure(new InfrastructureError('Message not supported.'));
     }
