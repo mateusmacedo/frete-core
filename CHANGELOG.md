@@ -4,6 +4,17 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.7.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.6.0...v0.7.0) (2023-06-24)
+
+### Features
+
+* :sparkles: domain errors ([6e83b7](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/6e83b78ef45950883149c1e4020da3182cf35d80))
+* :sparkles: new application errors ([883208](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/883208eb2ff00a62520d45a61d4689bec224a9f3))
+* :wastebasket: infrastructure errors ([764dd6](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/764dd6490aeb0f14664687db804dcd56e32e83f9))
+
+
+---
+
 ## [0.7.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.6.0...v0.7.0) (2023-06-19)
 
 ### Features
