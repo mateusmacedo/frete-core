@@ -9,4 +9,6 @@ interface MetadataStore
     public function addMetadata(string $key, $value): void;
 
     public function getMetadata(string $key);
+
+    public function getAllMetadata(): array;
 }

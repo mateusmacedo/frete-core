@@ -11,6 +11,7 @@ use Frete\Core\Application\{Action, Command, Dispatcher, Query};
 use Frete\Core\Domain\Event;
 use Frete\Core\Domain\EventStore;
 use Frete\Core\Infrastructure\Errors\InfrastructureError;
+use Frete\Core\Infrastructure\Messaging\MetadataStore;
 use Frete\Core\Shared\Result;
 use Throwable;
 
@@ -50,7 +51,7 @@ class DispatcherBus implements Dispatcher, EventStoreDispatcher
         foreach ($store->getEvents() as $event) {
             $metadata = [];
             if(is_subclass_of($event, MetadataStore::class)) {
-                $metadata = $event->getMetadata();
+                $metadata = $event->getAllMetadata();
             }
             $this->dispatch($event, $metadata);
             $store->commitEvent($event);

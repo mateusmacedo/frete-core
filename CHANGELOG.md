@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 
 ### Features
 
+* :sparkles: add get all metadata to metadata store ([e96d8b](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/e96d8b2dfb940a9c074165efcb48989976761ede))
 * Added publish to third application message ([226326](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/2263269988fdd0c585cfaa82e026896ca8d25701))
 * :boom: add new exception subclasses and change exception constructors ([641162](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/641162ba5d35bbb5d69830fcbb4107250b004ca4), [cd9e1a](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/cd9e1af072ebd380221e090a156186605f0e2775))
 * :sparkles: add class event store to allow storing and retrieving domain events ([f8c351](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/f8c3511fc74242f235479dd6ddf1623d5724005b), [4ff031](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/4ff0311d4b69612b050405c1bd1993884daed84f))
