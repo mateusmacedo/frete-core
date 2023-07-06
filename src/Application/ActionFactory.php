@@ -36,11 +36,11 @@ class ActionFactory
     public function create(string|BackedEnum $action, ?array $data = null): Action
     {
         $actionName = ($action instanceof BackedEnum) ? $action->name : $action;
-        $actionType = $this->map->offsetGet($actionName);
+        $actionType = $this->map->offsetExists($actionName);
         if (!$actionType) {
             throw new Exception("there is no {$actionName} action on the enum");
         }
-
+        $actionType = $this->map->offsetGet($actionName);
         return null != $data ? new $actionType(...$data) : new $actionType();
     }
 }

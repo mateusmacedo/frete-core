@@ -47,8 +47,8 @@ class RedisConnectionFactory implements ConnectionFactory
             throw new \Exception('array connection for custom redis connection is invalid');
         }
 
-        if (false == $this->redis) {
-            $this->redis = new PRedis($this->config); // CUSTOM CONNECTION
+        if (!$this->redis instanceof Redis) {
+            $this->redis = new PRedis($this->config);
             $this->redis->connect();
         }
 

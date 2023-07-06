@@ -4,6 +4,26 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.8.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.7.0...v0.8.0) (2023-07-06)
+
+### Features
+
+* ✨ add abstract class action controller and interface request action ([1fc5a6](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/1fc5a6127e28b3732ad855ba6acef073dacf7263))
+* ✨ add abstract handler for handling actions/events ([b705f4](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/b705f47ed54df3ee236d14be36722b8131f2ae50))
+* ✨ add event factory interface and update aggregate root class ([d660aa](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/d660aa77d7283009c503917a82c86aa9908356ef))
+
+### Code Refactoring
+
+* ♻️ dispatcher and dispatcher bus methods ([9a2b60](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/9a2b6039fb0dbf36fefe705a940e3352a6343294))
+* ♻️ redis connection factory for custom connection type check ([ef9990](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/ef99900a98edd4663ffdddd7b44ef4b10d67fd19))
+
+### Chores
+
+* 🚩 disable ecotone test module ([6d9c18](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/6d9c1876888687b21931aececdfce02dccb74063), [a46ed0](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/a46ed05b20bdc46fc12015b24b33dd7e9221a731))
+
+
+---
+
 ## [0.7.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.6.0...v0.7.0) (2023-06-24)
 
 ### Features
