@@ -1,5 +1,7 @@
 <?php
 
+use Ecotone\Messaging\Config\ModulePackageList;
+
 declare(strict_types=1);
 
 return [
@@ -16,5 +18,7 @@ return [
     // @phpstan-ignore-next-line
     'defaultErrorChannel' => env('ECOTONE_DEFAULT_ERROR_CHANNEL'),
     'defaultConnectionExceptionRetry' => null,
-    'skippedModulePackageNames' => [],
+    'skippedModulePackageNames' => [
+        ModulePackageList::TEST_PACKAGE
+    ],
 ];
