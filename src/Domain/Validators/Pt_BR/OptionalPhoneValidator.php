@@ -14,11 +14,11 @@ class OptionalPhoneValidator extends Validator
     {
         if (empty($input)) {
             $this->isValid = true;
+
             return $this->isValid;
         }
 
-        preg_match('/(\+[0-9]{2})?(([(][0-9]{2}[)])?([0-9]{2})?)9?[0-9]{4}-?[0-9]{4}/', $input, $matches);
-        $this->isValid = $input === $matches[0];
+        $this->isValid = (new PhoneValidator())->validate($input);
         return $this->isValid;
     }
 

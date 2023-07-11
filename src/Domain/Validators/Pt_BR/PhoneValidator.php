@@ -17,7 +17,7 @@ class PhoneValidator extends Validator
         }
 
         preg_match('/(\+[0-9]{2})?(([(][0-9]{2}[)])?([0-9]{2})?)9?[0-9]{4}-?[0-9]{4}/', $input, $matches);
-        $this->isValid = $input === $matches[0];
+        $this->isValid = !empty($matches[0]) && $input === $matches[0];
         return $this->isValid;
     }
 
