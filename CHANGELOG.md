@@ -4,6 +4,15 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.8.2](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.8.1...v0.8.2) (2023-07-12)
+
+### Styles
+
+* 📝 add docblock to fix typing ([e982cf](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/e982cfd15f531e6f7e29e7f9635a37e40f9fca23))
+
+
+---
+
 ## [0.8.1](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.8.0...v0.8.1) (2023-07-12)
 
 ### Bug Fixes
