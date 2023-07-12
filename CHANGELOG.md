@@ -4,6 +4,16 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.8.1](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.8.0...v0.8.1) (2023-07-12)
+
+### Bug Fixes
+
+* Checks if there is a match in verification ([8514ba](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/8514ba93d2c703729a407c5cb2dbc9b0db7acd85))
+* Correcting bug throws when try make an object that not exists in Enum type ([26652e](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/26652edb8e7f4fd1447a9a769feade9d77490f23))
+
+
+---
+
 ## [0.8.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.7.0...v0.8.0) (2023-07-06)
 
 ### Features
