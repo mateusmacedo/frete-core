@@ -15,7 +15,8 @@ class DefaultMessageHeader implements IHeaderMessage
             'Source' => getenv('APP_NAME') ? getenv('APP_NAME') : '',
             'Timestamp' => $this->generateTimestamp(),
             'SchemaVersion' => null,
-            'EventType' => null
+            'EventType' => null,
+            'Key' => false != getenv('QUEUE_CUSTOM_HEADER_KEY') ? getenv('QUEUE_CUSTOM_HEADER_KEY') : '',
         ];
     }
 
