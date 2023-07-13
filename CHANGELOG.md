@@ -4,6 +4,15 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.9.1](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.9.0...v0.9.1) (2023-07-13)
+
+### Chores
+
+* Adjusted message headers ([124dc1](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/124dc19bd9abc497dde93ce36a2558b9624761a5), [693673](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/6936739daf67aec0b211503aeb6a5b83e260daae), [89c20a](https://gitlab.fretebras.com.br/fretepago/payments/core/commit/89c20a82b8442cae67472c4ce8287639d2818d91))
+
+
+---
+
 ## [0.9.0](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.8.2...v0.9.0) (2023-07-12)
 
 

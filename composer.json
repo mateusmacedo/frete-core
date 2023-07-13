@@ -3,7 +3,7 @@
     "description": "core package for php projects opnative using ddd, cqrs, eda with laravel and ecotone framework",
     "type": "library",
     "license": "MIT",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "authors": [
         {
             "name": "Mateus Anjos",
