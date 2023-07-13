@@ -36,7 +36,8 @@ abstract class CustomEnqueueOutboundChannelAdapter implements MessageHandler
         $this->connectionFactory->getProducer()
             ->setTimeToLive($this->outboundMessage->getTimeToLive())
             ->setDeliveryDelay($this->outboundMessage->getDeliveryDelay())
-            ->send($this->destination, $messageToSend);
+            ->send($this->destination, $messageToSend)
+        ;
     }
 
     protected function buildMessage(Message $message): buildMessageReturn
@@ -45,8 +46,22 @@ abstract class CustomEnqueueOutboundChannelAdapter implements MessageHandler
         $headers = $outboundMessage->getHeaders();
         $headers[MessageHeaders::CONTENT_TYPE] = $outboundMessage->getContentType();
 
-        $messageBrokerHeaders = $this->messageBrokerHeaders->getSchema() ? $this->messageBrokerHeaders->getSchema() : [];
+        $messageBrokerHeaders = $this->enrichHeaderMessageBroker($this->messageBrokerHeaders->getSchema(), $headers, $message->getPayload());
 
         return $this->connectionFactory->createContext()->createMessage($outboundMessage->getPayload(), $headers, $messageBrokerHeaders);
+    }
+
+    protected function enrichHeaderMessageBroker(array $headersBrokerSchema, array $messageProperties, mixed $messagePayload)
+    {
+        if ((isset($messageProperties['__TypeId__']) && !empty($messageProperties['__TypeId__'])) && !isset($headersBrokerSchema['eventType'])) {
+            $transformToEventType = str_replace('\\', '.', $messageProperties['__TypeId__']);
+            $headersBrokerSchema['EventType'] = $transformToEventType;
+        }
+
+        if ((isset($messageProperties['version']) && !empty($messageProperties['version'])) && !isset($headersBrokerSchema['version'])) {
+            $headersBrokerSchema['version'] = $messagePayload->version;
+        }
+
+        return $headersBrokerSchema;
     }
 }
