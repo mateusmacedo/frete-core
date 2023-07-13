@@ -4,6 +4,11 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [0.9.2](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.9.1...v0.9.2) (2023-07-13)
+
+
+---
+
 ## [0.9.1](https://gitlab.fretebras.com.br/fretepago/payments/core/compare/v0.9.0...v0.9.1) (2023-07-13)
 
 ### Chores
